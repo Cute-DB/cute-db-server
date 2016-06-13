@@ -1,3 +1,6 @@
 target
 cutedbserver.iml
 .idea
+logs
+src/main/resources/public/node_modules
+src/main/resources/static/node_modules
