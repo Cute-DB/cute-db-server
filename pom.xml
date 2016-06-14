@@ -21,6 +21,7 @@
 		<java.version>1.8</java.version>
 		<spring-boot-starter-data-rest.version>1.3.5.RELEASE</spring-boot-starter-data-rest.version>
 		<spring-boot-starter-data-jpa.version>1.3.5.RELEASE</spring-boot-starter-data-jpa.version>
+		<spring-boot-starter-web.version>1.3.5.RELEASE</spring-boot-starter-web.version>
 		<spring-boot-devtools.version>1.3.5.RELEASE</spring-boot-devtools.version>
 	</properties>
 
@@ -37,6 +38,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring-boot-starter-web.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<version>${spring-boot-devtools.version}</version>
 		</dependency>
@@ -45,6 +51,12 @@
 			<artifactId>spring-test</artifactId>
 			<version>4.2.6.RELEASE</version>
 		</dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>runtime</scope>
+            <version>2.3.2</version>
+        </dependency>
 
 		<dependency>
 			<groupId>joda-time</groupId>

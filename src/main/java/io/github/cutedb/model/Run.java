@@ -12,21 +12,21 @@ public class Run  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long runId = null;
+    private Long id = null;
     private String jdbcUrl = null;
     private String server = null;
     private String host = null;
     private String user = null;
     private String databaseProductName = null;
-    private Boolean status = null;
+    private BuildStatus status = null;
     private Timestamp started = null;
     private Timestamp ended = null;
 
-    public Long getRunId() {
-        return runId;
+    public Long getId() {
+        return id;
     }
-    public void setRunId(Long runId) {
-        this.runId = runId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getJdbcUrl() {
@@ -64,10 +64,10 @@ public class Run  {
         this.databaseProductName = databaseProductName;
     }
 
-    public Boolean getStatus() {
+    public BuildStatus getStatus() {
         return status;
     }
-    public void setStatus(Boolean status) {
+    public void setStatus(BuildStatus status) {
         this.status = status;
     }
 
@@ -96,7 +96,7 @@ public class Run  {
             return false;
         }
         Run run = (Run) o;
-        return Objects.equals(runId, run.runId) &&
+        return Objects.equals(id, run.id) &&
                 Objects.equals(jdbcUrl, run.jdbcUrl) &&
                 Objects.equals(server, run.server) &&
                 Objects.equals(host, run.host) &&
@@ -109,7 +109,7 @@ public class Run  {
 
     @Override
     public int hashCode() {
-        return Objects.hash(runId, jdbcUrl, /*server, host, user, databaseProductName,*/ status);
+        return Objects.hash(id, jdbcUrl, /*server, host, user, databaseProductName,*/ status);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class Run  {
         StringBuilder sb = new StringBuilder();
         sb.append("class Run {\n");
 
-        sb.append("  runId: ").append(runId).append("\n");
+        sb.append("  id: ").append(id).append("\n");
         sb.append("  jdbcUrl: ").append(jdbcUrl).append("\n");
         sb.append("  server: ").append(server).append("\n");
         sb.append("  host: ").append(host).append("\n");

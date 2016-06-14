@@ -1,6 +1,7 @@
 package io.github.cutedb.repository;
 
 import io.github.cutedb.Application;
+import io.github.cutedb.model.BuildStatus;
 import io.github.cutedb.model.Run;
 import org.junit.After;
 import org.junit.Test;
@@ -33,12 +34,12 @@ public class RunRepositoryTest {
     public void testSave() {
         Run run = new Run();
         run.setUser("toto");
-        run.setStatus(true);
+        run.setStatus(BuildStatus.PENDING);
         run.setDatabaseProductName("postgres");
         run.setStarted(new Timestamp(new Date().getTime()));
         run.setEnded(run.getStarted());
         run = repository.save(run);
-        assertNotNull(run.getRunId());
+        assertNotNull(run.getId());
         assertTrue(repository.findAll().iterator().hasNext());
     }
 
@@ -52,10 +53,10 @@ public class RunRepositoryTest {
     public void testDeleteRunId() {
         Run run = new Run();
         run.setUser("toto");
-        run.setStatus(false);
+        run.setStatus(BuildStatus.PENDING);
         run = repository.save(run);
         assertTrue(repository.findAll().iterator().hasNext());
-        repository.delete(run.getRunId());
+        repository.delete(run.getId());
         assertFalse(repository.findAll().iterator().hasNext());
     }
 }
