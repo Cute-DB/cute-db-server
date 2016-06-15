@@ -1,0 +1,36 @@
+language: java
+jdk:
+- oraclejdk8
+cache:
+  directories:
+  - $HOME/.m2
+env:
+  global:
+  - secure: pXFAHHsLupLM9z9aDnHLE6ysLQp7fzgcLBmbogOR+pNtPjsYbvCXQ0zx0OEMn9t8Kwru+5G1+XJ4T5NSJzeiTy3Ruv4pdess826tnY+8ewxHgGobCceMlEn3jazrT6R5EzKN1w5pAOn5ZQpLacv1fOOwMmoUTZHs4ao1m9Ch0JE3+gMnrxvHyaWial5eyPCfdfdaYoZDCCBDO9B+bHCf40W4PXtnJ9Y6pi/6/gVqriTEM+qq86IT8DmJRGGxXkcrx0VO/3LMncP/iJPvMHo4oHUYJcxRYM5UMj87LjMrkIpzrmwiK/syHf0lkJvCmFKgL3d42bQqT+PK4cD65h0q11UqubAB9+uQheVTHkb6mjEnHSdPb9Z+6WdR9h3PwS3cHXjSqj5chk82QuhbsJVjx8l8PQ/eJy5mXkL1yy3A28j8G4fgzRWNwcy7xOOojc1Q3+pFwQg5NQHCrRTGq5PlpZbPHdZ93nFoC9S2CkfU8wWitHEcHs+wMDdePcyw/QJrtpLqp3XDOH2Wbh63vXd6fzDHkgIW5Ym7VDT2VxcLB/PFhrTZToLdepUpFMls4/P7TqdX95aEi7qovxOPUdgB5QBEp690foHDKPlTVNesXfZLN7AfFoNG1Iina/muk7mALL+XYZMmc9Ga/imnEKWM4iKpi2hOLgMLenTXd5EwLPU=
+  - secure: ChQ6LYEfOrPffhXQDWW+Styg9hbXA6Xoe/qLz1z+YtjrOnPh5d0fUJFsbKEsaTwsf3BeYeD6UsDXKyoVrr2uzCCEOKbvSygOURw7OG4psDdOCTgNxxdhbOBLEwWt2LOWxpQtSTeuayWFfmvn2jOfTON1ugT04Zk7+2ojo9Z95t8M8A8i8HZqMDBBvKueFqGf+AK88l1WKa6ULZLyWDDLarrnVck4HkSfYhLkU9rYFdexTSTZ3eH4TfFAACxvojy2TjG6d9F21hwkeH0yugYIcpI5VCQT0zMQsrMVT1z7HyLOj3ExxLHiSPbG9hNNAFu8s0mdGDKN4nuRXLI0y3yBvaUWWgb148p6anNryQ3GxNRmBZecUGi/cmVjSTLtsqpo1A//U3jECld3sAhBbQuds8olcDZU4XeD4NMymJjVw3D5LqYGfLBjQUdsR0114lpj9f1eKHqb1olWw6H4U/zuUK+a1CODJqY3w44iCjKzQb/0imJ7msYBzz07884X4pu51ht7seC6F3J88UZun8OEExFtOE227Jbs4e9aA01V1C4quj9S6stv6ArvuUCGTCXva5dMUfix47YEmz3ubSzOLSYWqYZ8GJqSvCxGcnOnIhpC5GaICfd57FuK/Q8vhiYsJzjUOx5OJs5KEbGsRiSdFdfLSlwO0TbPwH2xJ8oHGKs=
+install: mvn clean install checksum:files -DskipTests=true -Dmaven.javadoc.skip=true
+  -B -V
+script:
+- mvn versioneye:update test jacoco:report
+before_deploy:
+- export RELEASE_PKG_FILE=$(ls target/*.jar)
+- export RELEASE_PKG_MD5_FILE=$(ls target/*.jar.md5)
+- export RELEASE_PKG_SHA_FILE=$(ls target/*.jar.sha1)
+- echo "deploying $RELEASE_PKG_FILE , $RELEASE_PKG_MD5_FILE , $RELEASE_PKG_SHA_FILE
+  to GitHub releases"
+notifications:
+  slack:
+    rooms:
+      secure: jwh3b/KvyWY7eSPW17QtcuI3BNU4VPM7zE+mIZLKqZ7nAFlvMrCJ4FusR6rNPdxUvC9iaM4An3hT610MUNZb1ai9TZ0vC9JYo1g4n2q8C+BL10kSfOjema73htcQ2q73gqeiSnFidrbd0yRCnKAlqseRBNNhFJjEDHVJRuDRh8aB6k96yGcyZQylKQXz3krRpMzIbh+yRhbrh/9l+899y4X37nLpZMrQjl2rP/99fr+IbCv+VyTbKTHGCJg87wAY/3/I/OP6fpRpJ/9pypt0/pFgarWMet6+GaTg46HFjqqhldOmnBampL4Laz9aln8YGxHDS5yRYzZGrvOn2SHhpuods28b1x3x2J/Y5iP0x/aEc/e9Vms8rwUX+rrTqW7vk9RqImu2VeLvrc8kBqPAgtSWBceBEuuEw4DNvz02T+LcAzEY3BQY2cQ6RWst48WXXfgw8OuShJTkHBPI3eNsDMG0DpGILzMXZPbKY+LcaqWFL1B0YapCIOkddndSNVh99V0BS0KtxlIY2X8Vc3JGAJszYvGooGCDCoxR5tNIsWf5zj+RdwUKBxqWYhEhyctVPQCBWTQ1jFji9oIhSudQXD2Te0XLOuEpM0U43LmTjW9BPW4kqg0laW7SFzthzUO067W1DJ66N72/o2zKBOiCdkoBaIkC0I6G/BtybubQNNM=
+deploy:
+  provider: releases
+  api_key:
+    secure: UMYZaHnLLiv8/fl0JXIoIWCm+p+5V0mF1mjbJPOSlmG5SECUs23x/4rpbbyOG1IsHzc5xgNlKiJdwP0SHFykm/4WEWtrloAhLh4Cy4tFPVmj4wrTZVGs5Q8ths7aS0Izcy2GA3xHP64IA9QPf3UXFEehoYyevf5ye2bcEqR+IMLSvWBViEQ6iRUocmxfF1o+6tALdFTvOULsiXLb++3msgSVO2AaEaJquM4xgq5v5GRTLD3b5unKtFcmmyZd3X6f+GBB86x0sX7yLfMWhfOQhwsYGZfMVauWuHzf1kXD97bZ6gHTHXdH8SssYRAG58Wl4jBGpEOb4rnIq+UWRFaofw+NuXUzkuD6IzvVS/tHPeTnixBP6KfjLLbhejoyVDe0mRnNUyiLWw5JZSbW3RyclJP30fLCQYP2KQqEt8K8q1H6gqLosiJm1L/lP2iEaY70z2yePTsA0jYG3yhnAH+Nxu9qqlnevR5nZkDWHf2UDseWnvB65PoJrdyCrayKobHBdYGTesonwt7mchpH3346Xge+DXPafzqHT0l/dIewPrUTDfszPrGOrse9miT50LyCNEeLc2O5DnrdTCgTS87ksG0H5EOB7QmEhuoahF2VEYtrvPxe1QIznrkTjGtdBrWDlCS+h/0Ymfo2+64NyP1IpLl68Bcpwe3MeOiFJAdRuhE=
+  file:
+  - ${RELEASE_PKG_FILE}
+  - ${RELEASE_PKG_MD5_FILE}
+  - ${RELEASE_PKG_SHA_FILE}
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: Cute-DB/cute-db-server
