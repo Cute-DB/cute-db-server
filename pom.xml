@@ -5,7 +5,7 @@
 
 	<groupId>io.github.cutedb</groupId>
 	<artifactId>cutedbserver</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.0.1b</version>
 	<packaging>jar</packaging>
 
 	<name>cutedb-server</name>
@@ -31,7 +31,7 @@
     <contributors>
         <contributor>
             <name>Tatiana CHARVET</name>
-            <email>Tatiana.Charvet@ville-noumea.nc</email>
+            <email></email>
             <roles>
                 <role>Project Manager</role>
                 <role>Agile Guru</role>
@@ -39,9 +39,11 @@
             <timezone>+11</timezone>
         </contributor>
         <contributor>
-            <name>Adrien SALES</name>
-            <email>adriens@gmail.com</email>
-            <roles>
+             <id>adriens</id>
+             <name>Adrien Sales</name>
+             <email>Adrien.Sales@gmail.com</email>
+             <url>https://github.com/adriens</url>
+             <roles>
                 <role>Software Architect</role>
             </roles>
             <timezone>+11</timezone>
@@ -49,8 +51,10 @@
      </contributors>
     <developers>
         <developer>
+            <id>mbarre</id>	
             <name>Michèle BARRE</name>
             <email>michele.barre@gmail.com</email>
+            <url>https://github.com/mbarre</url>
             <roles>
                 <role>Developer</role>
             </roles>
