@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.github.cutedb</groupId>
-	<artifactId>cutedbserver</artifactId>
-	<version>0.0.1b</version>
-	<packaging>jar</packaging>
+    <groupId>io.github.cutedb</groupId>
+    <artifactId>cutedbserver</artifactId>
+    <version>0.0.1b</version>
+    <packaging>jar</packaging>
 
-	<name>cutedb-server</name>
-	<description>Demo project for Spring Boot</description>
+    <name>cutedb-server</name>
+    <description>Demo project for Spring Boot</description>
     <inceptionYear>2016</inceptionYear>
 
     <parent>
@@ -39,19 +39,18 @@
             <timezone>+11</timezone>
         </contributor>
         <contributor>
-             <id>adriens</id>
-             <name>Adrien Sales</name>
-             <email>Adrien.Sales@gmail.com</email>
-             <url>https://github.com/adriens</url>
-             <roles>
+            <name>Adrien Sales</name>
+            <email>Adrien.Sales@gmail.com</email>
+            <url>https://github.com/adriens</url>
+            <roles>
                 <role>Software Architect</role>
             </roles>
             <timezone>+11</timezone>
         </contributor>
-     </contributors>
+    </contributors>
     <developers>
         <developer>
-            <id>mbarre</id>	
+            <id>mbarre</id>
             <name>Michèle BARRE</name>
             <email>michele.barre@gmail.com</email>
             <url>https://github.com/mbarre</url>
@@ -71,15 +70,15 @@
 
 
 
-	<properties>
+    <properties>
         <github.url>https://github.com/Cute-DB/cute-db-server</github.url>
-		<java.version>1.8</java.version>
+        <java.version>1.8</java.version>
 
         <!-- Spring Boot -->
-		<spring-boot-starter-data-rest.version>1.3.5.RELEASE</spring-boot-starter-data-rest.version>
-		<spring-boot-starter-data-jpa.version>1.3.5.RELEASE</spring-boot-starter-data-jpa.version>
-		<spring-boot-starter-web.version>1.3.5.RELEASE</spring-boot-starter-web.version>
-		<spring-boot-devtools.version>1.3.5.RELEASE</spring-boot-devtools.version>
+        <spring-boot-starter-data-rest.version>1.3.5.RELEASE</spring-boot-starter-data-rest.version>
+        <spring-boot-starter-data-jpa.version>1.3.5.RELEASE</spring-boot-starter-data-jpa.version>
+        <spring-boot-starter-web.version>1.3.5.RELEASE</spring-boot-starter-web.version>
+        <spring-boot-devtools.version>1.3.5.RELEASE</spring-boot-devtools.version>
 
         <!-- Spring -->
         <!-- Cannot run tests if spring-test version not the same as spring-core-->
@@ -99,37 +98,37 @@
         <!-- Utilities -->
         <joda-time.version>2.9.4</joda-time.version>
         <h2.version>1.4.192</h2.version>
-	</properties>
+    </properties>
 
-	<dependencies>
+    <dependencies>
         <!-- Spring Boot -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-			<version>${spring-boot-starter-data-rest.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>${spring-boot-starter-data-jpa.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${spring-boot-starter-web.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<version>${spring-boot-devtools.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+            <version>${spring-boot-starter-data-rest.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring-boot-starter-data-jpa.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot-starter-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>${spring-boot-devtools.version}</version>
+        </dependency>
 
         <!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring-test.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-test.version}</version>
+        </dependency>
 
         <!-- Test -->
         <dependency>
@@ -146,26 +145,26 @@
         </dependency>
 
         <!-- Utilities -->
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
             <version>${joda-time.version}</version>
-		</dependency>
+        </dependency>
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <version>${h2.version}</version>
-		</dependency>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>com.versioneye</groupId>
                 <artifactId>versioneye-maven-plugin</artifactId>
@@ -227,18 +226,18 @@
                 </executions>
             </plugin>
         </plugins>
-	</build>
+    </build>
 
-	<repositories>
-		<repository>
-			<id>spring-releases</id>
-			<url>https://repo.spring.io/libs-release</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-releases</id>
-			<url>https://repo.spring.io/libs-release</url>
-		</pluginRepository>
-	</pluginRepositories>
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
