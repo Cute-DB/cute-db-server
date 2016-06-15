@@ -5,7 +5,7 @@
 
     <groupId>io.github.cutedb</groupId>
     <artifactId>cutedbserver</artifactId>
-    <version>0.0.1b</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>cutedb-server</name>
@@ -98,15 +98,11 @@
         <!-- Utilities -->
         <joda-time.version>2.9.4</joda-time.version>
         <h2.version>1.4.192</h2.version>
+        <commons-collections4.version>4.1</commons-collections4.version>
     </properties>
 
     <dependencies>
         <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-rest</artifactId>
-            <version>${spring-boot-starter-data-rest.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -150,11 +146,15 @@
             <artifactId>joda-time</artifactId>
             <version>${joda-time.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons-collections4.version}</version>
         </dependency>
 
     </dependencies>
@@ -240,4 +240,5 @@
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
+
 </project>

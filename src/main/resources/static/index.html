@@ -6,7 +6,7 @@
 <body ng-app="myApp">
 <div class="container" ng-controller="AppController">
     <div class="page-header">
-        <h1>A checklist</h1>
+        <h1>Runs list</h1>
     </div>
     <div class="alert alert-info" role="alert" ng-hide="runs && runs.length > 0">
         There are no runs yet.
@@ -27,7 +27,7 @@
         </div>
         <hr />
         <div class="input-group">
-            <input type="text" class="form-control" ng-model="newRun" placeholder="Enter the description..." />
+            <input type="text" class="form-control" ng-model="newRun" placeholder="Enter the jdbcUrl..." />
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit" ng-disabled="!newRun" title="Add">
               <span class="glyphicon glyphicon-plus"></span>
@@ -38,8 +38,6 @@
 </div>
 <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
 <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
-<script type="text/javascript" src="./bower_components/angular-spring-data-rest/dist/angular-spring-data-rest.min.js"></script>
-<script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
 <script type="text/javascript" src="./app/app.js"></script>
 <script type="text/javascript" src="./app/controllers.js"></script>
 <script type="text/javascript" src="./app/services.js"></script>

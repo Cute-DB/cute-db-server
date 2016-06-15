@@ -7,20 +7,19 @@
         $scope.addRun = function(jdbcUrl) {
             new Run({
                 jdbcUrl: jdbcUrl,
-                status: 'PENDING',
                 checked: false
-            }).save(function(run) {
+            }).$save(function(run) {
                 $scope.runs.push(run);
             });
             $scope.newRun = "";
         };
 
         $scope.updateRun = function(run) {
-            run.save();
+            run.$updateRun();
         };
 
         $scope.deleteRun = function(run) {
-            run.remove(function() {
+            run.$remove(function() {
                 $scope.runs.splice($scope.runs.indexOf(run), 1);
             });
         };

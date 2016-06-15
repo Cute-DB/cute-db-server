@@ -1,15 +1,8 @@
 {
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/guylabs/angular-spring-data-rest-sample.git"
-  }
-,
-  "name": "ng-spring-boot",
+  "name": "cute-db-server",
   "dependencies": {
     "angular": "~1.5.6",
     "angular-resource": "~1.5.6",
-    "bootstrap-css-only": "~3.3.6",
-    "angular-spring-data-rest":"0.4.4",
-    "lodash":"4.13.1"
+    "bootstrap-css-only": "~3.3.6"
   }
 }
