@@ -1,9 +1,8 @@
 package io.github.cutedb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.joda.time.DateTime;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -13,14 +12,27 @@ public class Run  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id = null;
+    @Column
     private String jdbcUrl = null;
+    @Column
     private String server = null;
+    @Column
     private String host = null;
+    @Column
     private String user = null;
+    @Column
     private String databaseProductName = null;
+    @Column
     private BuildStatus status = null;
+    @Column
     private Timestamp started = null;
+    @Column
     private Timestamp ended = null;
+
+    public Run(){
+        started = new Timestamp(new DateTime().getMillis());
+        status = BuildStatus.PENDING;
+    }
 
     public Long getId() {
         return id;
