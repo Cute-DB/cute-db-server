@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+</head>
+<body ng-app="myApp">
+<div class="container" ng-controller="AppController">
+    <div class="page-header">
+        <h1>Runs list</h1>
+    </div>
+    <div class="alert alert-info" role="alert" ng-hide="runs && runs.length > 0">
+        There are no runs yet.
+    </div>
+    <form class="form-horizontal" role="form" ng-submit="addRun(newRun)">
+        <div class="form-group" ng-repeat="run in runs">
+            <div class="checkbox col-xs-9">
+                <label>
+                    <input type="checkbox" ng-model="run.checked" ng-change="updateRun(run)"/> {{run.jdbcUrl}} {{run.status}}
+                </label>
+            </div>
+            <div class="col-xs-3">
+                <button class="pull-right btn btn-danger" type="button" title="Delete"
+                        ng-click="deleteRun(run)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+        </div>
+        <hr />
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="newRun" placeholder="Enter the jdbcUrl..." />
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" ng-disabled="!newRun" title="Add">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </span>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
+<script type="text/javascript" src="./app/app.js"></script>
+<script type="text/javascript" src="./app/controllers.js"></script>
+<script type="text/javascript" src="./app/services.js"></script>
+</body>
+</html>

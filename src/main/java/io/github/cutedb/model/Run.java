@@ -28,6 +28,8 @@ public class Run  {
     private Timestamp started = null;
     @Column
     private Timestamp ended = null;
+    @Column
+    private Integer totalHits = null;
 
     public Run(){
         started = new Timestamp(new DateTime().getMillis());
@@ -99,6 +101,14 @@ public class Run  {
         this.ended = ended;
     }
 
+    public Integer getTotalHits() {
+        return totalHits;
+    }
+
+    public void setTotalHits(Integer totalHits) {
+        this.totalHits = totalHits;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -116,12 +126,13 @@ public class Run  {
                 Objects.equals(databaseProductName, run.databaseProductName) &&
                 Objects.equals(status, run.status) &&
                 Objects.equals(started, run.started) &&
-                Objects.equals(ended, run.ended);
+                Objects.equals(ended, run.ended)&&
+                Objects.equals(totalHits, run.totalHits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, jdbcUrl, /*server, host, user, databaseProductName,*/ status);
+        return Objects.hash(id, jdbcUrl, server, host, user, databaseProductName, status, started, ended, totalHits);
     }
 
     @Override
@@ -136,6 +147,7 @@ public class Run  {
         sb.append("  user: ").append(user).append("\n");
         sb.append("  databaseProductName: ").append(databaseProductName).append("\n");
         sb.append("  status: ").append(status).append("\n");
+        sb.append("  totalHits: ").append(totalHits).append("\n");
         sb.append("}\n");
         return sb.toString();
     }
