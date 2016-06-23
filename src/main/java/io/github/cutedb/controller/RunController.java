@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by barmi83 on 15/06/16.
@@ -36,5 +37,10 @@ public class RunController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteRun(@PathVariable Long id) {
         runService.deleteRun(id);
+    }
+
+   @RequestMapping(value ="/uuid", method = RequestMethod.GET)
+    public String generateUuid() {
+        return UUID.randomUUID().toString();
     }
 }

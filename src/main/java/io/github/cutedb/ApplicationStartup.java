@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by barmi83 on 24/06/16.
@@ -29,6 +30,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
     public void onApplicationEvent(final ApplicationReadyEvent event) {
 
         Run run = new Run();
+        run.setUuid(UUID.randomUUID().toString());
         run.setUser("toto");
         run.setStatus(BuildStatus.PENDING);
         run.setDatabaseProductName("postgres");
@@ -37,6 +39,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         run = repository.save(run);
 
         run = new Run();
+        run.setUuid(UUID.randomUUID().toString());
         run.setUser("toto");
         run.setStatus(BuildStatus.FAILURE);
         run.setDatabaseProductName("postgres");
@@ -45,8 +48,18 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         run = repository.save(run);
 
         run = new Run();
+        run.setUuid(UUID.randomUUID().toString());
         run.setUser("toto");
         run.setStatus(BuildStatus.SUCCESS);
+        run.setDatabaseProductName("postgres");
+        run.setStarted(new Timestamp(new Date().getTime()));
+        run.setEnded(run.getStarted());
+        run = repository.save(run);
+
+        run = new Run();
+        run.setUuid(UUID.randomUUID().toString());
+        run.setUser("toto");
+        run.setStatus(BuildStatus.RUNNING);
         run.setDatabaseProductName("postgres");
         run.setStarted(new Timestamp(new Date().getTime()));
         run.setEnded(run.getStarted());

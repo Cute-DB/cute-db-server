@@ -5,7 +5,6 @@ import org.joda.time.DateTime;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 public class Run  {
@@ -14,7 +13,7 @@ public class Run  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id = null;
     @Column
-    private UUID uuid = null;
+    private String uuid = null;
     @Column
     private String jdbcUrl = null;
     @Column
@@ -35,7 +34,6 @@ public class Run  {
     private Integer totalHits = null;
 
     public Run(){
-        uuid = UUID.randomUUID();
         started = new Timestamp(new DateTime().getMillis());
         status = BuildStatus.PENDING;
     }
@@ -47,11 +45,11 @@ public class Run  {
         this.id = id;
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
@@ -139,12 +137,13 @@ public class Run  {
                 Objects.equals(status, run.status) &&
                 Objects.equals(started, run.started) &&
                 Objects.equals(ended, run.ended)&&
+                Objects.equals(uuid, run.uuid)&&
                 Objects.equals(totalHits, run.totalHits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, jdbcUrl, server, host, user, databaseProductName, status, started, ended, totalHits);
+        return Objects.hash(id, jdbcUrl, server, host, user, databaseProductName, status, started, ended, totalHits, uuid);
     }
 
     @Override
@@ -153,6 +152,7 @@ public class Run  {
         sb.append("class Run {\n");
 
         sb.append("  id: ").append(id).append("\n");
+        sb.append("  uuid: ").append(uuid).append("\n");
         sb.append("  jdbcUrl: ").append(jdbcUrl).append("\n");
         sb.append("  server: ").append(server).append("\n");
         sb.append("  host: ").append(host).append("\n");
