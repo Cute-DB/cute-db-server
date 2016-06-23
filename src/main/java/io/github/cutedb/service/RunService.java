@@ -45,5 +45,10 @@ public class RunService {
         runRepository.delete(id);
     }
 
-
+    public String initRun(String jdbcUrl){
+        Run run = new Run();
+        run.setJdbcUrl(jdbcUrl);
+        runRepository.save(run);
+        return run.getUuid().toString();
+    }
 }

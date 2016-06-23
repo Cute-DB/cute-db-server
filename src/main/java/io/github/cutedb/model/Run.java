@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 public class Run  {
@@ -12,6 +13,8 @@ public class Run  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id = null;
+    @Column
+    private UUID uuid = null;
     @Column
     private String jdbcUrl = null;
     @Column
@@ -32,6 +35,7 @@ public class Run  {
     private Integer totalHits = null;
 
     public Run(){
+        uuid = UUID.randomUUID();
         started = new Timestamp(new DateTime().getMillis());
         status = BuildStatus.PENDING;
     }
@@ -41,6 +45,14 @@ public class Run  {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getJdbcUrl() {
