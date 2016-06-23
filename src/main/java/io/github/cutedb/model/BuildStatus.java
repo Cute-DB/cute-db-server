@@ -7,6 +7,7 @@ import java.util.List;
  * Created by barmi83 on 13/06/16.
  */
 public enum BuildStatus {
+    RUNNING("Running"),
     PENDING("Pending"),
     FAILURE("Failure"),
     SUCCESS("Success");
