@@ -1,5 +1,6 @@
-(function(angular) {
-    var RunFactory = function($resource) {
+(function() {
+    angular.module('cuteDB')
+        .factory('Run', ['$resource', function RunFactory($resource){
         return $resource('/runs/:id', {
             id: '@id'
         }, {
@@ -10,8 +11,7 @@
                 method: "DELETE"
             }
         });
-    };
+        // }]);
+    }]);
 
-    RunFactory.$inject = ['$resource'];
-    angular.module("myApp.services").factory("Run", RunFactory);
-}(angular));
+})();

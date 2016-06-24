@@ -1,8 +1,14 @@
-(function(angular) {
-    var AppController = function($scope, Run) {
+(function() {
+    angular.module('cuteDB')
+        .controller('runController', ['$scope', 'Run', function($scope, Run) {
+
         Run.query(function(response) {
             $scope.runs = response ? response : [];
         });
+
+        $scope.getRun = function(uuid){
+            $scope.selectedRun = run.$getRun(uuid);
+        }
 
         $scope.addRun = function(jdbcUrl) {
             new Run({
@@ -23,8 +29,6 @@
                 $scope.runs.splice($scope.runs.indexOf(run), 1);
             });
         };
-    };
+    }]);
 
-    AppController.$inject = ['$scope', 'Run'];
-    angular.module("myApp.controllers").controller("AppController", AppController);
-}(angular));
+})();
