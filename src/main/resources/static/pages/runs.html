@@ -38,8 +38,8 @@
 
 </head>
 
-<body ng-app="myApp">
-<div id="wrapper" ng-controller="AppController">
+<body ng-app="cuteDB">
+<div id="wrapper" ng-controller="runController">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -383,10 +383,10 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-10">
-                <div class="panel panel-default">
+               <!-- <div class="panel panel-default">
                     <div class="panel-heading">
                         Kitchen Sink
-                    </div>
+                    </div> -->
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -409,10 +409,10 @@
                                 <tr ng-repeat="run in runs">
                                     <td>{{run.uuid}}</td>
                                     <td>
-                                        <button type="button" ng-show="run.status == 'PENDING'" class="btn btn-info">{{run.status}}</button>
-                                        <button type="button" ng-show="run.status == 'SUCCESS'" class="btn btn-success">{{run.status}}</button>
-                                        <button type="button" ng-show="run.status == 'RUNNING'" class="btn btn-warning">{{run.status}}</button>
-                                        <button type="button" ng-show="run.status == 'FAILURE'" class="btn btn-danger">{{run.status}}</button>
+                                        <button type="button" ng-show="run.status == 'PENDING'" class="btn btn-info" ng-click="showDetail(run)">{{run.status}}</button>
+                                        <button type="button" ng-show="run.status == 'SUCCESS'" class="btn btn-success" ng-click="showDetail(run)">{{run.status}}</button>
+                                        <button type="button" ng-show="run.status == 'RUNNING'" class="btn btn-warning" ng-click="showDetail(run)">{{run.status}}</button>
+                                        <button type="button" ng-show="run.status == 'FAILURE'" class="btn btn-danger" ng-click="showDetail(run)">{{run.status}}</button>
                                     </td>
                                     <td>{{run.jdbcUrl}}</td>
                                     <td>{{run.host}}</td>
@@ -433,7 +433,7 @@
                         <!-- /.table-responsive -->
                     </div>
                     <!-- /.panel-body -->
-                </div>
+                <!--</div>-->
                 <!-- /.panel -->
             </div>
         </div>
@@ -463,8 +463,8 @@
 <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
 <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
 <script type="text/javascript" src="../app/app.js"></script>
-<script type="text/javascript" src="../app/controllers.js"></script>
-<script type="text/javascript" src="../app/services.js"></script>
+<script type="text/javascript" src="../app/controllers/runController.js"></script>
+<script type="text/javascript" src="../app/services/runService.js"></script>
 
 </body>
 
