@@ -51,4 +51,9 @@ public class RunService {
         runRepository.save(run);
         return run.getUuid().toString();
     }
+
+    public Run findbyUuid(String uuid){
+        return runRepository.findByUuid(uuid);
+    }
+
 }

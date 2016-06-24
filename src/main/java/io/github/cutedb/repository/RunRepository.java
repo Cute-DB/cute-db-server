@@ -13,4 +13,6 @@ public interface RunRepository extends PagingAndSortingRepository<Run, Long> {
 
     List<Run> findByJdbcUrl(@Param("jdbcUrl") String jdbcUrl);
 
+    Run findByUuid(@Param("uuid") String uuid);
+
 }

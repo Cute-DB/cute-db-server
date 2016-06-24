@@ -39,8 +39,13 @@ public class RunController {
         runService.deleteRun(id);
     }
 
-   @RequestMapping(value ="/uuid", method = RequestMethod.GET)
+    @RequestMapping(value ="/uuid", method = RequestMethod.GET)
     public String generateUuid() {
         return UUID.randomUUID().toString();
+    }
+
+    @RequestMapping(value ="/uuid/{uuid}", method = RequestMethod.GET)
+    public Run findByUuid(@PathVariable String uuid){
+        return runService.findbyUuid(uuid);
     }
 }
