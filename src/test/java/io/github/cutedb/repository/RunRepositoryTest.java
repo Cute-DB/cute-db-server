@@ -57,6 +57,6 @@ public class RunRepositoryTest {
         run = repository.save(run);
         assertTrue(repository.findAll().iterator().hasNext());
         repository.delete(run.getId());
-        assertFalse(repository.findAll().iterator().hasNext());
+        assertNull(repository.findAll());
     }
 }
