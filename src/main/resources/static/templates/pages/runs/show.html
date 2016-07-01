@@ -1,0 +1,33 @@
+<div class="runs-wrapper" ng-controller="runShowController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Run {{selectedRun.uuid}}
+                <button type="button" ng-show="selectedRun.status == 'PENDING'" class="btn btn-info" >{{selectedRun.status}}</button>
+                <button type="button" ng-show="selectedRun.status == 'SUCCESS'" class="btn btn-success" >{{selectedRun.status}}</button>
+                <button type="button" ng-show="selectedRun.status == 'RUNNING'" class="btn btn-warning" >{{selectedRun.status}}</button>
+                <button type="button" ng-show="selectedRun.status == 'FAILURE'" class="btn btn-danger" >{{selectedRun.status}}</button>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-10">
+            <!-- <div class="panel panel-default">
+                 <div class="panel-heading">
+                     Kitchen Sink
+                 </div> -->
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <input id="stars_input" value="{{selectedRun.score}}" class="rating-loading" data-size="lg" >
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).on('ready', function(){
+        $('stars_input').rating({displayOnly: true, step: 0.5});
+    });
+</script>

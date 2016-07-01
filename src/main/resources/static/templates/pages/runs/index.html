@@ -32,13 +32,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="run in runs">
+                        <tr ng-repeat="run in runs" ng-click="showDetail(run)">
                             <td>{{run.uuid}}</td>
                             <td>
-                                <button type="button" ng-show="run.status == 'PENDING'" class="btn btn-info" ng-click="showDetail(run)">>{{run.status}}</button>
-                                <button type="button" ng-show="run.status == 'SUCCESS'" class="btn btn-success" ng-click="showDetail(run)">{{run.status}}</button>
-                                <button type="button" ng-show="run.status == 'RUNNING'" class="btn btn-warning" ng-click="showDetail(run)">{{run.status}}</button>
-                                <button type="button" ng-show="run.status == 'FAILURE'" class="btn btn-danger" ng-click="showDetail(run)">{{run.status}}</button>
+                                <button type="button" ng-show="run.status == 'PENDING'" class="btn btn-info" >{{run.status}}</button>
+                                <button type="button" ng-show="run.status == 'SUCCESS'" class="btn btn-success" >{{run.status}}</button>
+                                <button type="button" ng-show="run.status == 'RUNNING'" class="btn btn-warning" >{{run.status}}</button>
+                                <button type="button" ng-show="run.status == 'FAILURE'" class="btn btn-danger" >{{run.status}}</button>
                             </td>
                             <td>{{run.jdbcUrl}}</td>
                             <td>{{run.host}}</td>
