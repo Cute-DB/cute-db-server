@@ -45,6 +45,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         run.setDatabaseProductName("postgres");
         run.setStarted(new Timestamp(new Date().getTime()));
         run.setEnded(run.getStarted());
+        run.setCriticalHits(5);
         run = repository.save(run);
 
         run = new Run();
@@ -54,6 +55,9 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         run.setDatabaseProductName("postgres");
         run.setStarted(new Timestamp(new Date().getTime()));
         run.setEnded(run.getStarted());
+        run.setHighHits(3);
+        run.setMediumHits(1);
+        run.setLowHits(2);
         run = repository.save(run);
 
         run = new Run();

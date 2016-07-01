@@ -31,7 +31,15 @@ public class Run  {
     @Column
     private Timestamp ended = null;
     @Column
-    private Integer totalHits = null;
+    private Integer totalHits = 0;
+    @Column
+    private Integer criticalHits = 0;
+    @Column
+    private Integer highHits = 0;
+    @Column
+    private Integer mediumHits = 0;
+    @Column
+    private Integer lowHits = 0;
 
     public Run(){
         started = new Timestamp(new DateTime().getMillis());
@@ -119,6 +127,38 @@ public class Run  {
         this.totalHits = totalHits;
     }
 
+    public Integer getCriticalHits() {
+        return criticalHits;
+    }
+
+    public void setCriticalHits(Integer criticalHits) {
+        this.criticalHits = criticalHits;
+    }
+
+    public Integer getHighHits() {
+        return highHits;
+    }
+
+    public void setHighHits(Integer highHits) {
+        this.highHits = highHits;
+    }
+
+    public Integer getMediumHits() {
+        return mediumHits;
+    }
+
+    public void setMediumHits(Integer mediumHits) {
+        this.mediumHits = mediumHits;
+    }
+
+    public Integer getLowHits() {
+        return lowHits;
+    }
+
+    public void setLowHits(Integer lowHits) {
+        this.lowHits = lowHits;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -138,12 +178,16 @@ public class Run  {
                 Objects.equals(started, run.started) &&
                 Objects.equals(ended, run.ended)&&
                 Objects.equals(uuid, run.uuid)&&
-                Objects.equals(totalHits, run.totalHits);
+                Objects.equals(totalHits, run.totalHits)&&
+                Objects.equals(criticalHits, run.criticalHits)&&
+                Objects.equals(highHits, run.highHits)&&
+                Objects.equals(mediumHits, run.mediumHits)&&
+                Objects.equals(lowHits, run.lowHits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, jdbcUrl, server, host, user, databaseProductName, status, started, ended, totalHits, uuid);
+        return Objects.hash(id, jdbcUrl, server, host, user, databaseProductName, status, started, ended, totalHits, uuid, criticalHits, highHits, mediumHits, lowHits);
     }
 
     @Override
@@ -160,7 +204,16 @@ public class Run  {
         sb.append("  databaseProductName: ").append(databaseProductName).append("\n");
         sb.append("  status: ").append(status).append("\n");
         sb.append("  totalHits: ").append(totalHits).append("\n");
+        sb.append("  criticalHits: ").append(criticalHits).append("\n");
+        sb.append("  highHits: ").append(highHits).append("\n");
+        sb.append("  mediumHits: ").append(mediumHits).append("\n");
+        sb.append("  lowHits: ").append(lowHits).append("\n");
         sb.append("}\n");
         return sb.toString();
+    }
+
+    @Transient
+    public Integer getScore(){
+        return criticalHits >= 1 ? 0 : (highHits >= 1 ? 1 : (mediumHits >= 1 ? 2 : (lowHits >= 1 ? 3 : 4)));
     }
 }
