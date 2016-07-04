@@ -1,0 +1,11 @@
+.my-custom-stars .button .material-icons {
+    font-size: 50px;
+}
+
+.my-custom-stars .star-button.star-on .material-icons {
+    color: #FDE16D;
+}
+
+.my-custom-stars .star-button.star-off .material-icons {
+    color: #ddd;
+}
