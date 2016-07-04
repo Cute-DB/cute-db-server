@@ -20,14 +20,22 @@
                  </div> -->
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <input id="stars_input" value="{{selectedRun.score}}" class="rating-loading" data-size="lg" >
+                <!--<input id="input-21b" value="4" type="number" class="rating krajee-fa" min=0 max=5 step=0.2 data-size="lg">-->
+                <jk-rating-stars class="my-custom-stars" max-rating="4" rating="selectedRun.score" read-only="true" > </jk-rating-stars>
             </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Lints repartition
+                </div>
+                <!-- /.panel-heading -->
+                <nvd3 options='donutOptions' data='donutData'></nvd3>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
         </div>
     </div>
 
 </div>
-<script>
-    $(document).on('ready', function(){
-        $('stars_input').rating({displayOnly: true, step: 0.5});
-    });
-</script>
