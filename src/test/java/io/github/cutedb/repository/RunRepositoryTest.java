@@ -4,6 +4,7 @@ import io.github.cutedb.Application;
 import io.github.cutedb.model.BuildStatus;
 import io.github.cutedb.model.Run;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class RunRepositoryTest {
 
     @Autowired
     private RunRepository repository;
+
+    @Before
+    public void init() {
+        repository.deleteAll();
+    }
 
     @After
     public void tearDown() {
@@ -57,6 +63,6 @@ public class RunRepositoryTest {
         run = repository.save(run);
         assertTrue(repository.findAll().iterator().hasNext());
         repository.delete(run.getId());
-        assertNull(repository.findAll());
+        assertFalse(repository.findAll().iterator().hasNext());
     }
 }
