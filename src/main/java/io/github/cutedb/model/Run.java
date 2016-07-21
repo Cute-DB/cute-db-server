@@ -9,6 +9,11 @@ import java.util.Objects;
 @Entity
 public class Run  {
 
+    private static final int CRITICAL_WEIGHT = 5;
+    private static final int HIGH_WEIGHT = 3;
+    private static final int MEDIUM_WEIGHT = 2;
+    private static final int LOW_WEIGHT = 1;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id = null;
@@ -30,8 +35,6 @@ public class Run  {
     private Timestamp started = null;
     @Column
     private Timestamp ended = null;
-    @Column
-    private Integer totalHits = 0;
     @Column
     private Integer criticalHits = 0;
     @Column
@@ -119,14 +122,6 @@ public class Run  {
         this.ended = ended;
     }
 
-    public Integer getTotalHits() {
-        return totalHits;
-    }
-
-    public void setTotalHits(Integer totalHits) {
-        this.totalHits = totalHits;
-    }
-
     public Integer getCriticalHits() {
         return criticalHits;
     }
@@ -178,7 +173,6 @@ public class Run  {
                 Objects.equals(started, run.started) &&
                 Objects.equals(ended, run.ended)&&
                 Objects.equals(uuid, run.uuid)&&
-                Objects.equals(totalHits, run.totalHits)&&
                 Objects.equals(criticalHits, run.criticalHits)&&
                 Objects.equals(highHits, run.highHits)&&
                 Objects.equals(mediumHits, run.mediumHits)&&
@@ -187,7 +181,7 @@ public class Run  {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, jdbcUrl, server, host, user, databaseProductName, status, started, ended, totalHits, uuid, criticalHits, highHits, mediumHits, lowHits);
+        return Objects.hash(id, jdbcUrl, server, host, user, databaseProductName, status, started, ended, uuid, criticalHits, highHits, mediumHits, lowHits);
     }
 
     @Override
@@ -203,7 +197,6 @@ public class Run  {
         sb.append("  user: ").append(user).append("\n");
         sb.append("  databaseProductName: ").append(databaseProductName).append("\n");
         sb.append("  status: ").append(status).append("\n");
-        sb.append("  totalHits: ").append(totalHits).append("\n");
         sb.append("  criticalHits: ").append(criticalHits).append("\n");
         sb.append("  highHits: ").append(highHits).append("\n");
         sb.append("  mediumHits: ").append(mediumHits).append("\n");
@@ -215,5 +208,14 @@ public class Run  {
     @Transient
     public Integer getScore(){
         return criticalHits >= 1 ? 0 : (highHits >= 1 ? 1 : (mediumHits >= 1 ? 2 : (lowHits >= 1 ? 3 : 4)));
+    }
+
+    @Transient
+    public Integer getWeightedScore(){
+        int totalHits = criticalHits+highHits+mediumHits+lowHits;
+        if(totalHits == 0)
+            return 0;
+
+        return (criticalHits*CRITICAL_WEIGHT + highHits*HIGH_WEIGHT + mediumHits*MEDIUM_WEIGHT + lowHits*LOW_WEIGHT)/totalHits;
     }
 }

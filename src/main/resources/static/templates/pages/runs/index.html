@@ -44,8 +44,8 @@
                             <td>{{run.host}}</td>
                             <td>{{run.user}}</td>
                             <td>{{run.server}}</td>
-                            <td>{{run.started}}</td>
-                            <td>{{run.ended}}</td>
+                            <td>{{run.started | date : "medium" : "+11"}}</td>
+                            <td>{{run.ended | date : "medium" : "+11"}}</td>
                             <td>{{run.totalHits}}</td>
                             <td><button class="pull-center btn btn-danger" type="button" title="Delete"
                                         ng-click="deleteRun(run)">

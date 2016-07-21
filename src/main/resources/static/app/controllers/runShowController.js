@@ -5,7 +5,10 @@ angular.module('cuteDB')
         $http({method:'GET', url:'/runs/uuid/'+$routeParams.uuid})
             .success(function (data) {
                 $scope.selectedRun = data;
-
+                if($scope.selectedRun.ended) {
+                    $scope.elapsedTime = $scope.selectedRun.ended - $scope.selectedRun.started;
+                }
+                
                 $scope.donutOptions = {
                     chart: {
                         type: 'pieChart',
@@ -36,7 +39,27 @@ angular.module('cuteDB')
                         y: $scope.selectedRun.criticalHits
                     }
                 ];
-            })
+
+
+                $scope.myChartObject = {};
+                $scope.myChartObject.type = "Gauge";
+
+                $scope.myChartObject.options = {
+                    width: 200,
+                    height: 200,
+                    redFrom: 0,
+                    redTo: 15,
+                    yellowFrom: 15,
+                    yellowTo: 35,
+                    minorTicks: 5
+                };
+
+                $scope.myChartObject.data = [
+                    ['Label', 'Value'],
+                    ['Health', $scope.selectedRun.weightedScore]
+                ];
+            });
+
 
 
     }]);
