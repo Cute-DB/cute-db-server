@@ -6,7 +6,29 @@ angular.module('cuteDB')
             .success(function (data) {
                 $scope.selectedRun = data;
                 if($scope.selectedRun.ended) {
-                    $scope.elapsedTime = $scope.selectedRun.ended - $scope.selectedRun.started;
+
+                    var delta = Math.abs($scope.selectedRun.ended - $scope.selectedRun.started) / 1000;
+                    // calculate (and subtract) whole days
+                    var days = Math.floor(delta / 86400);
+                    delta -= days * 86400;
+                    // calculate (and subtract) whole hours
+                    var hours = Math.floor(delta / 3600) % 24;
+                    delta -= hours * 3600;
+                    // calculate (and subtract) whole minutes
+                    var minutes = Math.floor(delta / 60) % 60;
+                    delta -= minutes * 60;
+                    // what's left is seconds
+                    var seconds = delta % 60;  // in theory the modulus is not required
+
+
+                    $scope.elapsedTime = '';
+                    if(hours != null && hours != 0)
+                        $scope.elapsedTime = hours + ' h ';
+                    if(minutes != null && minutes != 0)
+                        $scope.elapsedTime = $scope.elapsedTime + minutes + ' min ';
+                    if(seconds != null && seconds != 0)
+                        $scope.elapsedTime = $scope.elapsedTime + seconds + ' sec';
+
                 }
                 
                 $scope.donutOptions = {

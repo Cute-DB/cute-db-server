@@ -1,11 +1,12 @@
 <div class="runs-wrapper" ng-controller="runShowController">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Run {{selectedRun.uuid}}
+            <h1 class="page-header">
                 <button type="button" ng-show="selectedRun.status == 'PENDING'" class="btn btn-info" >{{selectedRun.status}}</button>
                 <button type="button" ng-show="selectedRun.status == 'SUCCESS'" class="btn btn-success" >{{selectedRun.status}}</button>
                 <button type="button" ng-show="selectedRun.status == 'RUNNING'" class="btn btn-warning" >{{selectedRun.status}}</button>
                 <button type="button" ng-show="selectedRun.status == 'FAILURE'" class="btn btn-danger" >{{selectedRun.status}}</button>
+                Run {{selectedRun.uuid}}
             </h1>
         </div>
         <!-- /.col-lg-12 -->
@@ -16,7 +17,8 @@
         <div class="col-lg-10">
             <div class="well">
                 <h5>{{selectedRun.jdbcUrl}}</h5>
-                <p class="fa fa-clock-o"> Elapsed time {{elapsedTime | date : "hh:mm:ss"}}</p><br/>
+                <p class="fa fa-clock-o"> Elapsed time {{elapsedTime}}</p><br/>
+                <p class="fa fa-calendar">ago</p>
                 <p>{{selectedRun.user}} launched the run</p>
                 <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
             </div>

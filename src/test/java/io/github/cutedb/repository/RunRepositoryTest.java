@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -42,7 +41,7 @@ public class RunRepositoryTest {
         run.setUser("toto");
         run.setStatus(BuildStatus.PENDING);
         run.setDatabaseProductName("postgres");
-        run.setStarted(new Timestamp(new Date().getTime()));
+        run.setStarted(new Date());
         run.setEnded(run.getStarted());
         run = repository.save(run);
         assertNotNull(run.getId());

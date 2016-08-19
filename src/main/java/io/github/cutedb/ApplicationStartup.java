@@ -8,7 +8,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 
@@ -34,7 +33,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         run.setUser("toto");
         run.setStatus(BuildStatus.PENDING);
         run.setDatabaseProductName("postgres");
-        run.setStarted(new Timestamp(new Date().getTime()));
+        run.setStarted(new Date());
         run.setEnded(run.getStarted());
         run = repository.save(run);
 
@@ -43,7 +42,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         run.setUser("toto");
         run.setStatus(BuildStatus.FAILURE);
         run.setDatabaseProductName("postgres");
-        run.setStarted(new Timestamp(new Date().getTime()));
+        run.setStarted(new Date());
         run.setEnded(run.getStarted());
         run.setCriticalHits(5);
         run = repository.save(run);
@@ -53,7 +52,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         run.setUser("toto");
         run.setStatus(BuildStatus.SUCCESS);
         run.setDatabaseProductName("postgres");
-        run.setStarted(new Timestamp(new Date().getTime()));
+        run.setStarted(new Date());
         run.setEnded(run.getStarted());
         run.setHighHits(3);
         run.setMediumHits(1);
@@ -65,7 +64,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         run.setUser("toto");
         run.setStatus(BuildStatus.RUNNING);
         run.setDatabaseProductName("postgres");
-        run.setStarted(new Timestamp(new Date().getTime()));
+        run.setStarted(new Date());
         run.setEnded(run.getStarted());
         run = repository.save(run);
     }

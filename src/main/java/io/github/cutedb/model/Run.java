@@ -1,9 +1,8 @@
 package io.github.cutedb.model;
 
-import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -32,9 +31,9 @@ public class Run  {
     @Column
     private BuildStatus status = null;
     @Column
-    private Timestamp started = null;
+    private Date started = null;
     @Column
-    private Timestamp ended = null;
+    private Date ended = null;
     @Column
     private Integer criticalHits = 0;
     @Column
@@ -43,10 +42,14 @@ public class Run  {
     private Integer mediumHits = 0;
     @Column
     private Integer lowHits = 0;
+//    @OneToMany(targetEntity = Lint.class, fetch = FetchType.EAGER,
+//            mappedBy = "run", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Lint> lints;
 
     public Run(){
-        started = new Timestamp(new DateTime().getMillis());
+        started = new Date();
         status = BuildStatus.PENDING;
+//        lints = new ArrayList<>();
     }
 
     public Long getId() {
@@ -106,19 +109,19 @@ public class Run  {
         this.status = status;
     }
 
-    public Timestamp getStarted() {
+    public Date getStarted() {
         return started;
     }
 
-    public void setStarted(Timestamp started) {
+    public void setStarted(Date started) {
         this.started = started;
     }
 
-    public Timestamp getEnded() {
+    public Date getEnded() {
         return ended;
     }
 
-    public void setEnded(Timestamp ended) {
+    public void setEnded(Date ended) {
         this.ended = ended;
     }
 
@@ -153,6 +156,18 @@ public class Run  {
     public void setLowHits(Integer lowHits) {
         this.lowHits = lowHits;
     }
+
+    public static int getCriticalWeight() {
+        return CRITICAL_WEIGHT;
+    }
+
+//    public List<Lint> getLints() {
+//        return lints;
+//    }
+//
+//    public void setLints(List<Lint> lints) {
+//        this.lints = lints;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -213,9 +228,12 @@ public class Run  {
     @Transient
     public Integer getWeightedScore(){
         int totalHits = criticalHits+highHits+mediumHits+lowHits;
+
         if(totalHits == 0)
             return 0;
 
         return (criticalHits*CRITICAL_WEIGHT + highHits*HIGH_WEIGHT + mediumHits*MEDIUM_WEIGHT + lowHits*LOW_WEIGHT)/totalHits;
     }
+
+
 }

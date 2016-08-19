@@ -2,6 +2,16 @@
     angular.module('cuteDB')
         .controller('runController', ['$scope', '$location', 'Run', function($scope, $location, Run) {
 
+            var feed = new EventSource('/runs/register');
+            var handler = function(event){
+                var newRun = JSON.parse(event.data);
+                $scope.$apply(function () {
+                   $scope.runs.push(newRun);
+                });
+
+            }
+            feed.addEventListener('newRun', handler, false);
+
             Run.query(function(response) {
                 $scope.runs = response ? response : [];
             });
@@ -34,5 +44,6 @@
                 $location.path('/runs/'+ run.uuid);
             };
         }]);
+
 
 })();
