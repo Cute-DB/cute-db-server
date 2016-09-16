@@ -12,14 +12,18 @@
             }
             feed.addEventListener('newRun', handler, false);
 
+            //Get all runs
             Run.query(function(response) {
                 $scope.runs = response ? response : [];
+                console.log("runs:"+$scope.runs);
             });
 
+            // Get run by uuid
             $scope.getRun = function(uuid){
                 $scope.selectedRun = run.$getRun(uuid);
             }
 
+            // Create new run
             $scope.addRun = function(jdbcUrl) {
                 new Run({
                     jdbcUrl: jdbcUrl,
@@ -30,19 +34,23 @@
                 $scope.newRun = "";
             };
 
+            // Update run
             $scope.updateRun = function(run) {
                 run.$updateRun();
             };
 
+            // Delete run
             $scope.deleteRun = function(run) {
                 run.$remove(function() {
                     $scope.runs.splice($scope.runs.indexOf(run), 1);
                 });
             };
 
-            $scope.showDetail = function(run){
+
+            $scope.showInfo = function(run){
                 $location.path('/runs/'+ run.uuid);
             };
+
         }]);
 
 

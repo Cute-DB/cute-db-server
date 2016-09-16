@@ -1,47 +1,17 @@
 (function() {
     angular.module('cuteDB')
-        .controller('runController', ['$scope', '$location', 'Run', function($scope, $location, Run) {
+        .controller('lintController', ['$scope', '$location', 'Lint', function($scope, $location, Lint) {
 
-            var feed = new EventSource('/runs/register');
-            var handler = function(event){
-                var newRun = JSON.parse(event.data);
-                $scope.$apply(function () {
-                   $scope.runs.push(newRun);
-                });
-
-            }
-            feed.addEventListener('newRun', handler, false);
-
-            Run.query(function(response) {
-                $scope.runs = response ? response : [];
+            Lint.query(function(response) {
+                $scope.lints = response ? response : [];
             });
 
-            $scope.getRun = function(uuid){
-                $scope.selectedRun = run.$getRun(uuid);
+            $scope.getLint = function(uuid){
+                $scope.selectedLint = run.$getLint(uuid);
             }
 
-            $scope.addRun = function(jdbcUrl) {
-                new Run({
-                    jdbcUrl: jdbcUrl,
-                    checked: false
-                }).$save(function(run) {
-                    $scope.runs.push(run);
-                });
-                $scope.newRun = "";
-            };
-
-            $scope.updateRun = function(run) {
-                run.$updateRun();
-            };
-
-            $scope.deleteRun = function(run) {
-                run.$remove(function() {
-                    $scope.runs.splice($scope.runs.indexOf(run), 1);
-                });
-            };
-
-            $scope.showDetail = function(run){
-                $location.path('/runs/'+ run.uuid);
+            $scope.showDetail = function(lint){
+                $location.path('/lints/'+ lint.runuuid);
             };
         }]);
 

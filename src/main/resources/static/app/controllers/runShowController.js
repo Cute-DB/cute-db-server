@@ -1,6 +1,6 @@
 (function() {
 angular.module('cuteDB')
-    .controller('runShowController',['$http', '$routeParams', '$scope', function($http, $routeParams, $scope) {
+    .controller('runShowController',['$http', '$routeParams', '$scope', '$location', function($http, $routeParams, $scope, $location) {
 
         $http({method:'GET', url:'/runs/uuid/'+$routeParams.uuid})
             .success(function (data) {
@@ -20,7 +20,6 @@ angular.module('cuteDB')
                     // what's left is seconds
                     var seconds = delta % 60;  // in theory the modulus is not required
 
-
                     $scope.elapsedTime = '';
                     if(hours != null && hours != 0)
                         $scope.elapsedTime = hours + ' h ';
@@ -28,8 +27,30 @@ angular.module('cuteDB')
                         $scope.elapsedTime = $scope.elapsedTime + minutes + ' min ';
                     if(seconds != null && seconds != 0)
                         $scope.elapsedTime = $scope.elapsedTime + seconds + ' sec';
-
                 }
+
+                var now = new Date();
+                $scope.launched = '';
+                var delta = Math.abs($scope.selectedRun.started - now) / 1000;
+                // calculate (and subtract) whole days
+                var days = Math.floor(delta / 86400);
+                delta -= days * 86400;
+                // calculate (and subtract) whole hours
+                var hours = Math.floor(delta / 3600) % 24;
+                delta -= hours * 3600;
+                // calculate (and subtract) whole minutes
+                var minutes = Math.floor(delta / 60) % 60;
+                delta -= minutes * 60;
+                // what's left is seconds
+                var seconds = delta % 60;  // in theory the modulus is not required
+
+                $scope.launched = '';
+                if(hours != null && hours != 0)
+                    $scope.launched = hours + ' h ';
+                if(minutes != null && minutes != 0)
+                    $scope.launched = $scope.launched + minutes + ' min ';
+                if(seconds != null && seconds != 0)
+                    $scope.launched = $scope.launched + seconds + ' sec';
                 
                 $scope.donutOptions = {
                     chart: {
@@ -80,9 +101,14 @@ angular.module('cuteDB')
                     ['Label', 'Value'],
                     ['Health', $scope.selectedRun.weightedScore]
                 ];
+
             });
 
-
+        // Get run lints
+        $scope.showLints = function(uuid){
+            $location.path('/runs/' + uuid + '/lints');
+            console.log('/runs/' + uuid + '/lints')
+        };
 
     }]);
 })();

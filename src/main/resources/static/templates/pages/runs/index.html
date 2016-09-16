@@ -32,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="run in runs" ng-click="showDetail(run)">
+                        <tr ng-repeat="run in runs" ng-click="showInfo(run)">
                             <td>{{run.uuid}}</td>
                             <td>
                                 <button type="button" ng-show="run.status == 'PENDING'" class="btn btn-info" >{{run.status}}</button>

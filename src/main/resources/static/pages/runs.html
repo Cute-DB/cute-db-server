@@ -409,10 +409,10 @@
                                 <tr ng-repeat="run in runs">
                                     <td>{{run.uuid}}</td>
                                     <td>
-                                        <button type="button" ng-show="run.status == 'PENDING'" class="btn btn-info" ng-click="showDetail(run)">{{run.status}}</button>
-                                        <button type="button" ng-show="run.status == 'SUCCESS'" class="btn btn-success" ng-click="showDetail(run)">{{run.status}}</button>
-                                        <button type="button" ng-show="run.status == 'RUNNING'" class="btn btn-warning" ng-click="showDetail(run)">{{run.status}}</button>
-                                        <button type="button" ng-show="run.status == 'FAILURE'" class="btn btn-danger" ng-click="showDetail(run)">{{run.status}}</button>
+                                        <button type="button" ng-show="run.status == 'PENDING'" class="btn btn-info" ng-click="showInfo(run)">{{run.status}}</button>
+                                        <button type="button" ng-show="run.status == 'SUCCESS'" class="btn btn-success" ng-click="showInfo(run)">{{run.status}}</button>
+                                        <button type="button" ng-show="run.status == 'RUNNING'" class="btn btn-warning" ng-click="showInfo(run)">{{run.status}}</button>
+                                        <button type="button" ng-show="run.status == 'FAILURE'" class="btn btn-danger" ng-click="showInfo(run)">{{run.status}}</button>
                                     </td>
                                     <td>{{run.jdbcUrl}}</td>
                                     <td>{{run.host}}</td>

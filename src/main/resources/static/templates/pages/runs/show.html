@@ -15,54 +15,109 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-10">
-            <div class="well">
-                <h5>{{selectedRun.jdbcUrl}}</h5>
+            <div class="well success">
+                <p class="fa fa-database"> {{selectedRun.jdbcUrl}}</p><br/>
                 <p class="fa fa-clock-o"> Elapsed time {{elapsedTime}}</p><br/>
-                <p class="fa fa-calendar">ago</p>
-                <p>{{selectedRun.user}} launched the run</p>
-                <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
+                <p class="fa fa-calendar"> {{launched}} ago</p><br/>
+                <p class="fa fa-user" ng-show="selectedRun.user"> {{selectedRun.user}} launched the run</p><br/>
+                <!--<a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>-->
             </div>
 
-                <!-- Nav tabs -->
-                <div>
+            <!-- Nav tabs -->
+            <div>
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#/runs/{{selectedRun.uuid}}" data-toggle="tab">Current</a>
+                        <a href="/runs/{{selectedRun.uuid}}/#current" data-toggle="tab">Current</a>
                     </li>
-                    <li><a href="#/runs/{{selectedRun.uuid}}" data-toggle="tab">History</a>
+                    <li>
+                        <a href="/runs/{{selectedRun.uuid}}/#history" data-toggle="tab">History</a>
                     </li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane fade in active" id="current">
+                        <div class="tab-pane fade in active" id="current">
 
-                        <!--<input id="input-21b" value="4" type="number" class="rating krajee-fa" min=0 max=5 step=0.2 data-size="lg">-->
-                        <jk-rating-stars class="my-custom-stars" max-rating="4" rating="selectedRun.score" read-only="true" > </jk-rating-stars>
-                        <div google-chart chart="myChartObject"></div>
+                            <!-- Nav tabs -->
+                            <div>
+                                <ul class="nav nav-pills">
+                                    <li class="active">
+                                        <a href="/runs/{{selectedRun.uuid}}/#dashboard" data-toggle="tab">DashBoard</a>
+                                    </li>
+                                    <li>
+                                        <a href="" ng-click="showLints(selectedRun.uuid)" data-toggle="tab">Details</a>
+                                    </li>
+                                </ul>
 
-                        <div class="col-lg-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Lints repartition
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="dashboard">
+                                        <h4>Dashbard Tab</h4>
+                                        <jk-rating-stars class="my-custom-stars" max-rating="4" rating="selectedRun.score" read-only="true" > </jk-rating-stars>
+                                        <div google-chart chart="myChartObject"></div>
+
+                                        <div class="col-lg-4">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    Lints repartition
+                                                </div>
+                                                <!-- /.panel-heading -->
+                                                <nvd3 options='donutOptions' data='donutData'></nvd3>
+                                            </div>
+                                            <!-- /.panel-body -->
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="details">
+                                        <h4>Details</h4>
+                                        <!-- /.row -->
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <!-- <div class="panel panel-default">
+                                                     <div class="panel-heading">
+                                                         Kitchen Sink
+                                                     </div> -->
+                                                <!-- /.panel-heading -->
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Object</th>
+                                                                <th>Severity</th>
+                                                                <th>Linter</th>
+                                                                <th>Value</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr ng-repeat="lint in lints">
+                                                                <td>{{lint.objectName}}</td>
+                                                                <td>{{lint.severity}}</td>
+                                                                <td>{{run.linter}}</td>
+                                                                <td>{{run.value}}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- /.table-responsive -->
+                                                </div>
+                                                <!-- /.panel-body -->
+                                                <!--</div>-->
+                                                <!-- /.panel -->
+                                            </div>
+                                        </div>                                    </div>
                                 </div>
-                                <!-- /.panel-heading -->
-                                <nvd3 options='donutOptions' data='donutData'></nvd3>
                             </div>
-                            <!-- /.panel-body -->
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="history">
-                        <h4>History</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
+                        <div class="tab-pane fade" id="history">
+                            <h4>History</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
 
                 </div>
 
             </div>
-        <!--</div>-->
+        </div>
     </div>
 
 </div>
 
-</div>

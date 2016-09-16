@@ -1,5 +1,6 @@
 package io.github.cutedb.controller;
 
+import io.github.cutedb.dto.Lint;
 import io.github.cutedb.model.Run;
 import io.github.cutedb.service.LintService;
 import io.github.cutedb.service.RunService;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -84,6 +86,19 @@ public class RunController {
     public Run findByUuid(@PathVariable String uuid){
         return runService.findbyUuid(uuid);
     }
+
+
+    @RequestMapping(value ="/uuid/{uuid}/lints", method = RequestMethod.GET)
+    public List<Lint> findAllLintsByRunUuid(@PathVariable String uuid){
+        List<io.github.cutedb.model.Lint> lintsList = lintService.findAllByRunUiid(uuid);
+        List<Lint> finalList = new ArrayList<>();
+
+        lintsList.forEach(item-> finalList.add(lintService.lintToLintDto(item)));
+        return finalList;
+    }
+
+
+
 
     @RequestMapping (path = "/register", method = RequestMethod.GET)
     public SseEmitter register() throws IOException {
