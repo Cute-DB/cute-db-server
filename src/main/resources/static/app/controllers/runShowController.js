@@ -2,6 +2,25 @@
 angular.module('cuteDB')
     .controller('runShowController',['$http', '$routeParams', '$scope', '$location', function($http, $routeParams, $scope, $location) {
 
+
+        $scope.tabs = [
+            {
+                "heading": "Dashboard",
+                "active": true,
+                "template":"/templates/pages/runs/dashboard.html"
+            },
+            {
+                "heading": "Details",
+                "active": false,
+                "template":"/templates/pages/lints/index.html"
+            },
+
+        ];
+        $scope.tabs.activeTab = 0;
+
+
+
+
         $http({method:'GET', url:'/runs/uuid/'+$routeParams.uuid})
             .success(function (data) {
                 $scope.selectedRun = data;

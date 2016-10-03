@@ -1,5 +1,5 @@
 angular.module('cuteDB')
-    .config(['$routeProvider', function($routeProvider){
+    .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
         $routeProvider.when('/runs', {
             templateUrl:'/templates/pages/runs/index.html',
             controller: 'runController'
@@ -10,14 +10,14 @@ angular.module('cuteDB')
                 controller: 'runShowController'
             })
 
-            .when('/runs/:uuid/#current', {
-                templateUrl:'/templates/pages/runs/show.html',
-                controller: 'runShowController'
-            })
-            .when('/runs/:uuid/#details', {
-                templateUrl:'/templates/pages/runs/show.html',
-                controller: 'runShowController'
-            })
+            // .when('/runs/:uuid/#current', {
+            //     templateUrl:'/templates/pages/runs/show.html',
+            //     controller: 'runShowController'
+            // })
+            // .when('/runs/:uuid/#details', {
+            //     templateUrl:'/templates/pages/runs/show.html',
+            //     controller: 'runShowController'
+            // })
 
             .when('/runs/:uuid/lints', {
                 templateUrl:'/templates/pages/lints/index.html',
@@ -26,4 +26,9 @@ angular.module('cuteDB')
 
 
             .otherwise({redirectTo:'/'});
+
+            // $locationProvider.html5Mode({
+            //     enabled: true,
+            //     requireBase: false
+            // });
     }]);

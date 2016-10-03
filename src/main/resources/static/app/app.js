@@ -1,3 +1,3 @@
 (function() {
-    angular.module("cuteDB", ["ngResource", "ngRoute", "nvd3", "jkAngularRatingStars", "googlechart", "cute-db-directives"]);
+    angular.module("cuteDB", ["ngResource", "ngRoute", "nvd3", "jkAngularRatingStars", "googlechart", "cute-db-directives","ngAnimate", "mgcrea.ngStrap"]);
 })();

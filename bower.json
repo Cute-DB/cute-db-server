@@ -9,6 +9,8 @@
     "angular-route":"v1.5.8",
     "angular-nvd3":"1.0.9",
     "angular-jk-rating-stars":"1.0.3",
-    "angular-google-chart":"0.1.0"
+    "angular-google-chart":"0.1.0",
+    "angular-strap":"",
+    "angular-animate":""
   }
 }
