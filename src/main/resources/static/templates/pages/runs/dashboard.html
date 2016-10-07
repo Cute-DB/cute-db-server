@@ -1,6 +1,5 @@
-<h4>Dashbard Tab</h4>
-<jk-rating-stars class="my-custom-stars" max-rating="4" rating="selectedRun.score" read-only="true" > </jk-rating-stars>
-<div google-chart chart="myChartObject"></div>
+<input-stars max="4" ng-model="selectedRun.score" ng-attr-readonly="true"></input-stars>
+<!--<div google-chart chart="myChartObject"></div>-->
 
 <div class="col-lg-4">
     <div class="panel panel-default">
@@ -10,5 +9,12 @@
         <!-- /.panel-heading -->
         <nvd3 options='donutOptions' data='donutData'></nvd3>
     </div>
+    <!--<div>-->
+        <!--<pvtl-d3-treemap width="850" height="850" data="treemapData" value="population">-->
+            <!--<div>-->
+                <!--<p>{{propertyName}}</p>-->
+            <!--</div>-->
+        <!--</pvtl-d3-treemap>-->
+    <!--</div>-->
     <!-- /.panel-body -->
 </div>

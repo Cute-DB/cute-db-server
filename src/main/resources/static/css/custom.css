@@ -102,3 +102,9 @@
     color: #337ab7;
     border-bottom-color: #337ab7;
 }
+
+.angular-input-stars {
+    font-size: 20px;
+    margin-top: 30px;
+    height: 20px;
+}

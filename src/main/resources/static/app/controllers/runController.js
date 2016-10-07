@@ -51,6 +51,8 @@
                 $location.path('/runs/'+ run.uuid);
             };
 
+
+
         }]);
 
 
