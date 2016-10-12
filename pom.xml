@@ -75,10 +75,11 @@
         <java.version>1.8</java.version>
 
         <!-- Spring Boot -->
-        <spring-boot-starter-data-rest.version>1.4.1.RELEASE</spring-boot-starter-data-rest.version>
-        <spring-boot-starter-data-jpa.version>1.4.1.RELEASE</spring-boot-starter-data-jpa.version>
-        <spring-boot-starter-web.version>1.4.1.RELEASE</spring-boot-starter-web.version>
-        <spring-boot-devtools.version>1.4.1.RELEASE</spring-boot-devtools.version>
+        <spring-boot.version>1.4.0.RELEASE</spring-boot.version>
+        <spring-boot-starter-data-rest.version>${spring-boot.version}</spring-boot-starter-data-rest.version>
+        <spring-boot-starter-data-jpa.version>${spring-boot.version}</spring-boot-starter-data-jpa.version>
+        <spring-boot-starter-web.version>${spring-boot.version}</spring-boot-starter-web.version>
+        <spring-boot-devtools.version>${spring-boot.version}</spring-boot-devtools.version>
 
         <!-- Spring -->
         <!-- Cannot run tests if spring-test version not the same as spring-core-->
