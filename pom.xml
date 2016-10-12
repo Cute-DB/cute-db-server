@@ -82,7 +82,7 @@
 
         <!-- Spring -->
         <!-- Cannot run tests if spring-test version not the same as spring-core-->
-        <spring-test.version>4.3.3.RELEASE</spring-test.version>
+        <spring-test.version>4.2.6.RELEASE</spring-test.version>
 
         <!-- Maven plugins -->
         <versioneye-maven-plugin.version>3.10.2</versioneye-maven-plugin.version>
