@@ -8,6 +8,11 @@
     src: url('../fonts/Aaargh.ttf');
 }
 
+@font-face {
+    font-family: 'SourceCodePro-Light';
+    src: url('../fonts/SourceCodePro-Light.otf');
+}
+
 
 body{
     font-family: 'Aaargh';
@@ -28,22 +33,26 @@ body{
 
 /* Critical */
 .red {
-    color : #d43f3a;
+    /*color : #d43f3a;*/
+    color : #AA4643;
 }
 
 /* High */
 .orange {
-    color : orange;
+    /*color : orange;*/
+    color : #DB843D;
 }
 
 /* Medium */
 .yellow {
-    color : #FDE16D;
+    /*color : #FDE16D;*/
+    color: #71588F;
 }
 
 /* Low */
 .blue {
-    color : #66afe9;
+    /*color : #66afe9;*/
+    color : #4572A7;
 }
 
 .objectName {
@@ -51,6 +60,8 @@ body{
     font-weight: bolder;
     margin-bottom: 5px;
     color : #C2CD22;
+    font-family: "SourceCodePro-Light";
+    font-size: medium;
 }
 
 .lint {
@@ -126,7 +137,7 @@ body{
 }
 
 .well > p {
-    font-family: 'Aaargh';
+    font-family: SourceCodePro-Light;
 }
 
 .ok {
@@ -147,4 +158,8 @@ body{
 
 .donut {
     margin-top: 20px;
+}
+
+.severity{
+    text-align: center;
 }

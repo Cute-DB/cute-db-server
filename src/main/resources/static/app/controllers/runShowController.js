@@ -70,7 +70,15 @@ angular.module('cuteDB')
                     $scope.launched = $scope.launched + minutes + ' min ';
                 if(seconds != null && seconds != 0)
                     $scope.launched = $scope.launched + seconds + ' sec';
-                
+
+                var colorArray = ['#4572A7', '#71588F', '#DB843D', '#AA4643'];
+                $scope.colorFunction = function() {
+                    return function(d, i) {
+                        return colorArray[i];
+                    };
+                }
+
+
                 $scope.donutOptions = {
                     chart: {
                         type: 'pieChart',
@@ -79,6 +87,7 @@ angular.module('cuteDB')
                         x: function(d){return d.key;},
                         y: function(d){return d.y;},
                         showLabels: true,
+                        color:$scope.colorFunction(),
                     }
                 };
 
@@ -103,23 +112,23 @@ angular.module('cuteDB')
                 ];
 
 
-                $scope.myChartObject = {};
-                $scope.myChartObject.type = "Gauge";
-
-                $scope.myChartObject.options = {
-                    width: 200,
-                    height: 200,
-                    redFrom: 0,
-                    redTo: 15,
-                    yellowFrom: 15,
-                    yellowTo: 35,
-                    minorTicks: 5
-                };
-
-                $scope.myChartObject.data = [
-                    ['Label', 'Value'],
-                    ['Health', $scope.selectedRun.weightedScore]
-                ];
+                // $scope.myChartObject = {};
+                // $scope.myChartObject.type = "Gauge";
+                //
+                // $scope.myChartObject.options = {
+                //     width: 200,
+                //     height: 200,
+                //     redFrom: 0,
+                //     redTo: 15,
+                //     yellowFrom: 15,
+                //     yellowTo: 35,
+                //     minorTicks: 5
+                // };
+                //
+                // $scope.myChartObject.data = [
+                //     ['Label', 'Value'],
+                //     ['Health', $scope.selectedRun.weightedScore]
+                // ];
 
             });
 
