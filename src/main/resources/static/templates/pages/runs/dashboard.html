@@ -1,11 +1,8 @@
-<input-stars max="4" ng-model="selectedRun.score" ng-attr-readonly="true"></input-stars>
 <!--<div google-chart chart="myChartObject"></div>-->
 
 <div class="col-lg-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Lints repartition
-        </div>
+    <div class="panel panel-default donut">
+        <div class="panel-heading">Lints repartition</div>
         <!-- /.panel-heading -->
         <nvd3 options='donutOptions' data='donutData'></nvd3>
     </div>

@@ -5,7 +5,6 @@ import io.github.cutedb.model.Run;
 import io.github.cutedb.service.LintService;
 import io.github.cutedb.service.RunService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -43,14 +42,14 @@ public class RunController {
 
        // synchronized (sseEmitters) {
 
-            for (SseEmitter emitter : sseEmitters) {
-                try {
-                    emitter.send(run, MediaType.APPLICATION_JSON);
-                } catch (IOException e) {
-                    emitter.complete();
-                    sseEmitters.remove(emitter);
-                }
-            }
+//            for (SseEmitter emitter : sseEmitters) {
+//                try {
+//                    emitter.send(run, MediaType.APPLICATION_JSON);
+//                } catch (IOException e) {
+//                    emitter.complete();
+//                    sseEmitters.remove(emitter);
+//                }
+//            }
             
             /*sseEmitters.forEach((SseEmitter emitter) -> {
                 try {

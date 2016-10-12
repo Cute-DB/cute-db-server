@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'Note this';
+    src: url('../fonts/Note_this.ttf');
+}
+
+@font-face {
+    font-family: 'Aaargh';
+    src: url('../fonts/Aaargh.ttf');
+}
+
+
+body{
+    font-family: 'Aaargh';
+}
+
+
 .my-custom-stars .button .material-icons {
     font-size: 50px;
 }
@@ -49,6 +65,7 @@
 }
 
 .table .list-group-item:first-child {
+    margin-top: 20px;
     border-top: 0px !important;
     border-top-right-radius: 0px !important;
     border-top-left-radius: 0px !important;
@@ -59,20 +76,6 @@
     border-bottom-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
 }
-
-/*.nav-tabs-thin { border-bottom: 2px solid #DDD; }*/
-/*.nav-tabs-thin > li.active > a, .nav-tabs-thin > li.active > a:focus, .nav-tabs-thin > li.active > a:hover { border-width: 0; }*/
-/*.nav-tabs-thin > li > a { border: none; color: #666; }*/
-/*.nav-tabs-thin > li.active > a, .nav-tabs-thin > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }*/
-/*.nav-tabs-thin > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }*/
-/*.nav-tabs-thin > li.active > a::after, .nav-tabs-thin > li:hover > a::after { transform: scale(1); }*/
-/*.tab-nav-thin > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }*/
-/*.tab-pane-thin { padding: 15px 0; }*/
-/*.tab-content-thin{padding:20px}*/
-
-/*.card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 30px; }*/
-/*body{ background: #EDECEC; padding:50px}*/
-
 
 .flatTabs > .nav-tabs > li > a {
     border-top: 0;
@@ -107,4 +110,41 @@
     font-size: 20px;
     margin-top: 30px;
     height: 20px;
+}
+
+
+
+.cutedb{
+    font-family: 'Note this';
+    margin-left:20px;
+    padding-top: 15px;
+    font-size: xx-large;
+}
+
+.well {
+    margin-top: 20px;
+}
+
+.well > p {
+    font-family: 'Aaargh';
+}
+
+.ok {
+    border-color: #d6e9c6;
+}
+
+.ko {
+    border-color: #ebccd1;
+}
+
+.running {
+    border-color: #faebcc;
+}
+
+.pending {
+    border-color: #bce8f1;
+}
+
+.donut {
+    margin-top: 20px;
 }

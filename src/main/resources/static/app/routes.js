@@ -25,7 +25,7 @@ angular.module('cuteDB')
             })
 
 
-            .otherwise({redirectTo:'/'});
+            .otherwise({redirectTo:'/runs'});
 
             // $locationProvider.html5Mode({
             //     enabled: true,

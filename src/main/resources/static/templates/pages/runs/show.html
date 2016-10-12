@@ -2,11 +2,13 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <button type="button" ng-show="selectedRun.status == 'PENDING'" class="btn btn-info" >{{selectedRun.status}}</button>
-                <button type="button" ng-show="selectedRun.status == 'SUCCESS'" class="btn btn-success" >{{selectedRun.status}}</button>
-                <button type="button" ng-show="selectedRun.status == 'RUNNING'" class="btn btn-warning" >{{selectedRun.status}}</button>
-                <button type="button" ng-show="selectedRun.status == 'FAILURE'" class="btn btn-danger" >{{selectedRun.status}}</button>
+                <button type="button" ng-class="{'btn btn-success' : selectedRun.status == 'SUCCESS',
+                                        'btn btn-danger' : selectedRun.status == 'FAILURE',
+                                        'btn btn-warning' : selectedRun.status == 'RUNNING',
+                                        'btn btn-info' : selectedRun.status == 'PENDING' }">{{selectedRun.status}}</button>
                 Run {{selectedRun.uuid}}
+                <input-stars max="4" ng-model="selectedRun.score" ng-attr-readonly="true"></input-stars>
+
             </h1>
         </div>
         <!-- /.col-lg-12 -->
@@ -15,12 +17,6 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-10">
-            <!--<div class="well success">-->
-                <!--<p class="fa fa-database"> {{selectedRun.jdbcUrl}}</p><br/>-->
-                <!--<p class="fa fa-clock-o"> Elapsed time {{elapsedTime}}</p><br/>-->
-                <!--<p class="fa fa-calendar"> {{launched}} ago</p><br/>-->
-                <!--<p class="fa fa-user" ng-show="selectedRun.user"> {{selectedRun.user}} launched the run</p><br/>-->
-            <!--</div>-->
 
             <!-- Nav tabs -->
             <div>
@@ -37,11 +33,18 @@
                 <div class="tab-content">
 
                     <div class="tab-pane fade in active" id="current">
-                        <div class="well success">
-                            <p class="fa fa-database"> {{selectedRun.jdbcUrl}}</p><br/>
-                            <p class="fa fa-clock-o"> Elapsed time {{elapsedTime}}</p><br/>
-                            <p class="fa fa-calendar"> {{launched}} ago</p><br/>
-                            <p class="fa fa-user" ng-show="selectedRun.user"> {{selectedRun.user}} launched the run</p><br/>
+                        <div ng-class="{'well ok' : selectedRun.status == 'SUCCESS',
+                                        'well ko' : selectedRun.status == 'FAILURE',
+                                        'well running' : selectedRun.status == 'RUNNING',
+                                        'well pending' : selectedRun.status == 'PENDING' }">
+                            <i class="fa fa-database" aria-hidden="true"></i>
+                            <span> {{selectedRun.jdbcUrl}}</span><br/>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <span> Elapsed time {{elapsedTime}}</span><br/>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <span > {{launched}} ago</span><br/>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span  ng-show="selectedRun.user"> {{selectedRun.user}} launched the run</span><br/>
                         </div>
 
                         <div class="flatTabs" bs-active-pane="tabs.activeTab" bs-tabs>

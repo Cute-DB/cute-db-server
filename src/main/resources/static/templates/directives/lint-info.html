@@ -5,11 +5,11 @@
         </div>
     </div>
     <div class="row lint" ng-repeat="detail in value">
-        <div class="col-md-1">
+        <div class="col-sm-1">
             <span ng-show="value[$index-1].message != detail.message"
-                  ng-class="detail.severity === 'critical' ? 'red fa fa-circle-o' : (detail.severity === 'high' ? 'orange fa fa-circle-o' : (detail.severity === 'medium' ? 'yellow fa fa-circle-o' : 'blue fa fa-circle-o'))"></span>
+                  ng-class="detail.severity === 'critical' ? 'red fa fa-circle' : (detail.severity === 'high' ? 'orange fa fa-circle' : (detail.severity === 'medium' ? 'yellow fa fa-circle' : 'blue fa fa-circle'))"></span>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="message" ng-show="value[$index-1].message != detail.message">{{detail.message}}</span>
         </div>
 

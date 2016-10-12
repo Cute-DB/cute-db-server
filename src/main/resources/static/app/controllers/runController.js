@@ -15,7 +15,9 @@
             //Get all runs
             Run.query(function(response) {
                 $scope.runs = response ? response : [];
-                console.log("runs:"+$scope.runs);
+                $scope.runs.sort(function(a,b) {
+                    return new Date(b.started) - new Date(a.started);
+                })
             });
 
             // Get run by uuid
