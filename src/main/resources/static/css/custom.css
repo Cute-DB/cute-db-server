@@ -34,25 +34,29 @@ body{
 /* Critical */
 .red {
     /*color : #d43f3a;*/
-    color : #AA4643;
+    color : #EC3E40;
 }
 
 /* High */
 .orange {
     /*color : orange;*/
-    color : #DB843D;
+    color : #FF9B2B;
 }
 
 /* Medium */
 .yellow {
     /*color : #FDE16D;*/
-    color: #71588F;
+    color: #FF9B2B;
 }
 
 /* Low */
 .blue {
     /*color : #66afe9;*/
-    color : #4572A7;
+    color : #377FC7;
+}
+
+.green {
+    color: #87BB43;
 }
 
 .objectName {
@@ -60,19 +64,21 @@ body{
     font-weight: bolder;
     margin-bottom: 5px;
     color : #C2CD22;
-    font-family: "SourceCodePro-Light";
-    font-size: medium;
+    /*font-family: "SourceCodePro-Light";*/
+    /*font-size: medium;*/
 }
 
 .lint {
     font-weight: lighter;
-    margin-left: 20px;
+    margin-left: 40px;
+    margin-top: 10px;
 }
 
 
 .table .list-group-item {
     border-left: 0px !important;
     border-right: 0px !important;
+    padding-left: 0;
 }
 
 .table .list-group-item:first-child {
@@ -162,4 +168,10 @@ body{
 
 .severity{
     text-align: center;
+    font-size: medium;
+}
+
+.value {
+    /*font-family: SourceCodePro-Light;*/
+    /*font-size: medium;*/
 }

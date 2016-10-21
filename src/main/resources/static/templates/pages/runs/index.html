@@ -29,7 +29,9 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="run in runs" ng-click="showInfo(run)">
-                            <td>{{ run.uuid | limitTo: 20 }}{{run.uuid.length > 20 ? '...' : ''}}</td>
+                            <td>
+                                {{ run.uuid | limitTo: 20 }}{{run.uuid.length > 20 ? '...' : ''}}
+                            </td>
                             <td>
                                 <button type="button" ng-class="{'btn btn-success' : run.status == 'SUCCESS',
                                 'btn btn-danger' : run.status == 'FAILURE',

@@ -23,6 +23,10 @@ public class Run  {
     @Column
     private String server = null;
     @Column
+    private String dbHost = null;
+    @Column
+    private String dbName = null;
+    @Column
     private String host = null;
     @Column
     private String user = null;
@@ -35,6 +39,14 @@ public class Run  {
     @Column
     private Date ended = null;
     @Column
+    private String runnerVersion = null;
+    @Column
+    private String schemaCrawlerVersion = null;
+    @Column
+    private String additionalLintsVersion = null;
+    @Column
+    private String lintConfig = null;
+    @Column
     private Integer criticalHits = 0;
     @Column
     private Integer highHits = 0;
@@ -42,14 +54,10 @@ public class Run  {
     private Integer mediumHits = 0;
     @Column
     private Integer lowHits = 0;
-//    @OneToMany(targetEntity = Lint.class, fetch = FetchType.EAGER,
-//            mappedBy = "run", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Lint> lints;
 
     public Run(){
         started = new Date();
         status = BuildStatus.PENDING;
-//        lints = new ArrayList<>();
     }
 
     public Long getId() {
@@ -125,6 +133,38 @@ public class Run  {
         this.ended = ended;
     }
 
+    public String getRunnerVersion() {
+        return runnerVersion;
+    }
+
+    public void setRunnerVersion(String runnerVersion) {
+        this.runnerVersion = runnerVersion;
+    }
+
+    public String getSchemaCrawlerVersion() {
+        return schemaCrawlerVersion;
+    }
+
+    public void setSchemaCrawlerVersion(String schemaCrawlerVersion) {
+        this.schemaCrawlerVersion = schemaCrawlerVersion;
+    }
+
+    public String getAdditionalLintsVersion() {
+        return additionalLintsVersion;
+    }
+
+    public void setAdditionalLintsVersion(String additionalLintsVersion) {
+        this.additionalLintsVersion = additionalLintsVersion;
+    }
+
+    public String getLintConfig() {
+        return lintConfig;
+    }
+
+    public void setLintConfig(String lintConfig) {
+        this.lintConfig = lintConfig;
+    }
+
     public Integer getCriticalHits() {
         return criticalHits;
     }
@@ -161,63 +201,79 @@ public class Run  {
         return CRITICAL_WEIGHT;
     }
 
-//    public List<Lint> getLints() {
-//        return lints;
-//    }
-//
-//    public void setLints(List<Lint> lints) {
-//        this.lints = lints;
-//    }
+    public String getDbHost() {
+        return dbHost;
+    }
+
+    public void setDbHost(String dbHost) {
+        this.dbHost = dbHost;
+    }
+
+    public String getDbName() {
+        return dbName;
+    }
+
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
+    }
+
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Run run = (Run) o;
         return Objects.equals(id, run.id) &&
+                Objects.equals(uuid, run.uuid) &&
                 Objects.equals(jdbcUrl, run.jdbcUrl) &&
                 Objects.equals(server, run.server) &&
+                Objects.equals(dbHost, run.dbHost) &&
+                Objects.equals(dbName, run.dbName) &&
                 Objects.equals(host, run.host) &&
                 Objects.equals(user, run.user) &&
                 Objects.equals(databaseProductName, run.databaseProductName) &&
-                Objects.equals(status, run.status) &&
+                status == run.status &&
                 Objects.equals(started, run.started) &&
-                Objects.equals(ended, run.ended)&&
-                Objects.equals(uuid, run.uuid)&&
-                Objects.equals(criticalHits, run.criticalHits)&&
-                Objects.equals(highHits, run.highHits)&&
-                Objects.equals(mediumHits, run.mediumHits)&&
+                Objects.equals(ended, run.ended) &&
+                Objects.equals(runnerVersion, run.runnerVersion) &&
+                Objects.equals(schemaCrawlerVersion, run.schemaCrawlerVersion) &&
+                Objects.equals(additionalLintsVersion, run.additionalLintsVersion) &&
+                Objects.equals(lintConfig, run.lintConfig) &&
+                Objects.equals(criticalHits, run.criticalHits) &&
+                Objects.equals(highHits, run.highHits) &&
+                Objects.equals(mediumHits, run.mediumHits) &&
                 Objects.equals(lowHits, run.lowHits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, jdbcUrl, server, host, user, databaseProductName, status, started, ended, uuid, criticalHits, highHits, mediumHits, lowHits);
+        return Objects.hash(id, uuid, jdbcUrl, server, dbHost, dbName, host, user, databaseProductName, status, started, ended, criticalHits, highHits, mediumHits, lowHits);
     }
 
     @Override
-    public String toString()  {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class Run {\n");
-
-        sb.append("  id: ").append(id).append("\n");
-        sb.append("  uuid: ").append(uuid).append("\n");
-        sb.append("  jdbcUrl: ").append(jdbcUrl).append("\n");
-        sb.append("  server: ").append(server).append("\n");
-        sb.append("  host: ").append(host).append("\n");
-        sb.append("  user: ").append(user).append("\n");
-        sb.append("  databaseProductName: ").append(databaseProductName).append("\n");
-        sb.append("  status: ").append(status).append("\n");
-        sb.append("  criticalHits: ").append(criticalHits).append("\n");
-        sb.append("  highHits: ").append(highHits).append("\n");
-        sb.append("  mediumHits: ").append(mediumHits).append("\n");
-        sb.append("  lowHits: ").append(lowHits).append("\n");
-        sb.append("}\n");
-        return sb.toString();
+    public String toString() {
+        return "Run{" +
+                "id=" + id +
+                ", uuid='" + uuid + '\'' +
+                ", jdbcUrl='" + jdbcUrl + '\'' +
+                ", server='" + server + '\'' +
+                ", dbHost='" + dbHost + '\'' +
+                ", dbName='" + dbName + '\'' +
+                ", host='" + host + '\'' +
+                ", user='" + user + '\'' +
+                ", databaseProductName='" + databaseProductName + '\'' +
+                ", status=" + status +
+                ", started=" + started +
+                ", ended=" + ended +
+                ", runnerVersion='" + runnerVersion + '\'' +
+                ", schemaCrawlerVersion='" + schemaCrawlerVersion + '\'' +
+                ", additionalLintsVersion='" + additionalLintsVersion + '\'' +
+                ", lintConfig='" + lintConfig + '\'' +
+                ", criticalHits=" + criticalHits +
+                ", highHits=" + highHits +
+                ", mediumHits=" + mediumHits +
+                ", lowHits=" + lowHits +
+                '}';
     }
 
     @Transient

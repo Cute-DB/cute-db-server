@@ -12,12 +12,18 @@ public class Run {
     private String uuid = null;
     private String jdbcUrl = null;
     private String server = null;
+    private String dbHost = null;
+    private String dbName = null;
     private String host = null;
     private String user = null;
     private String databaseProductName = null;
     private BuildStatus status = null;
     private Date started = null;
     private Date ended = null;
+    private String runnerVersion = null;
+    private String schemaCrawlerVersion = null;
+    private String additionalLintsVersion = null;
+    private String lintConfig = null;
     private Integer criticalHits = 0;
     private Integer highHits = 0;
     private Integer mediumHits = 0;
@@ -103,6 +109,38 @@ public class Run {
         this.ended = ended;
     }
 
+    public String getRunnerVersion() {
+        return runnerVersion;
+    }
+
+    public void setRunnerVersion(String runnerVersion) {
+        this.runnerVersion = runnerVersion;
+    }
+
+    public String getSchemaCrawlerVersion() {
+        return schemaCrawlerVersion;
+    }
+
+    public void setSchemaCrawlerVersion(String schemaCrawlerVersion) {
+        this.schemaCrawlerVersion = schemaCrawlerVersion;
+    }
+
+    public String getAdditionalLintsVersion() {
+        return additionalLintsVersion;
+    }
+
+    public void setAdditionalLintsVersion(String additionalLintsVersion) {
+        this.additionalLintsVersion = additionalLintsVersion;
+    }
+
+    public String getLintConfig() {
+        return lintConfig;
+    }
+
+    public void setLintConfig(String lintConfig) {
+        this.lintConfig = lintConfig;
+    }
+
     public Integer getCriticalHits() {
         return criticalHits;
     }
@@ -133,5 +171,21 @@ public class Run {
 
     public void setLowHits(Integer lowHits) {
         this.lowHits = lowHits;
+    }
+
+    public String getDbHost() {
+        return dbHost;
+    }
+
+    public void setDbHost(String dbHost) {
+        this.dbHost = dbHost;
+    }
+
+    public String getDbName() {
+        return dbName;
+    }
+
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
     }
 }

@@ -1,19 +1,25 @@
 <div>
     <div class="row objectName">
-        <div class="col-sm-4 col-md-4">
+        <div class="col-sm-5 col-md-5">
+            <i ng-class="value[0].severity === 'critical' ? 'red fa fa-exclamation-circle' :
+                    (value[0].severity === 'high' ? 'red fa fa-arrow-circle-up' :
+                    (value[0].severity === 'medium' ? 'orange fa fa-chevron-circle-up' : 'green fa fa-chevron-circle-down'))">
+            </i>
             <span>{{key}}</span>
         </div>
     </div>
     <div class="row lint" ng-repeat="detail in value">
-        <div class="col-sm-5 col-md-5">
+        <div class="col-sm-4 col-md-4">
             <span class="message" ng-show="value[$index-1].message != detail.message">{{detail.message}}</span>
         </div>
         <div class="col-sm-1 col-md-1 severity">
             <i ng-show="value[$index-1].message != detail.message"
-                  ng-class="detail.severity === 'critical' ? 'red fa fa-circle' : (detail.severity === 'high' ? 'orange fa fa-circle' : (detail.severity === 'medium' ? 'yellow fa fa-circle' : 'blue fa fa-circle'))">
+                  ng-class="detail.severity === 'critical' ? 'red fa fa-exclamation-circle' :
+                    (detail.severity === 'high' ? 'red fa fa-arrow-circle-up' :
+                    (detail.severity === 'medium' ? 'orange fa fa-chevron-circle-up' : 'green fa fa-chevron-circle-down'))">
             </i>
         </div>
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-7 col-md-7">
             <span class="value">{{detail.value}}</span>
         </div>
     </div>

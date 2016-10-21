@@ -1,6 +1,8 @@
 package io.github.cutedb.model;
 
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -24,6 +26,7 @@ public class Lint implements Serializable{
     @Column
     String message;
     @Column
+    @Length(max = 1000)
     String value;
     @ManyToOne(targetEntity = Run.class)
     @JoinColumn(name = "id_run")

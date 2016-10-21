@@ -84,11 +84,16 @@ public class RunService {
         runDto.setId(run.getId());
         runDto.setUuid((run.getUuid()));
         runDto.setHost(run.getHost());
+        runDto.setDbHost(run.getDbHost());
+        runDto.setDbName(run.getDbName());
         runDto.setCriticalHits(run.getCriticalHits());
         runDto.setJdbcUrl(run.getJdbcUrl());
         runDto.setDatabaseProductName(run.getDatabaseProductName());
         runDto.setStarted(run.getStarted());
         runDto.setEnded(run.getEnded());
+        runDto.setRunnerVersion(run.getRunnerVersion());
+        runDto.setSchemaCrawlerVersion(run.getSchemaCrawlerVersion());
+        runDto.setAdditionalLintsVersion(run.getAdditionalLintsVersion());
         runDto.setStatus(run.getStatus());
         runDto.setHighHits(run.getHighHits());
         runDto.setLowHits(run.getLowHits());

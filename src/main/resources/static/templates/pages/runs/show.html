@@ -6,7 +6,7 @@
                                         'btn btn-danger' : selectedRun.status == 'FAILURE',
                                         'btn btn-warning' : selectedRun.status == 'RUNNING',
                                         'btn btn-info' : selectedRun.status == 'PENDING' }">{{selectedRun.status}}</button>
-                Run {{selectedRun.uuid}}
+                {{selectedRun.dbHost}}/{{selectedRun.dbName}}
                 <input-stars max="4" ng-model="selectedRun.score" ng-attr-readonly="true"></input-stars>
 
             </h1>
@@ -33,36 +33,51 @@
                 <div class="tab-content">
 
                     <div class="tab-pane fade in active" id="current">
+
                         <div ng-class="{'well ok' : selectedRun.status == 'SUCCESS',
                                         'well ko' : selectedRun.status == 'FAILURE',
                                         'well running' : selectedRun.status == 'RUNNING',
                                         'well pending' : selectedRun.status == 'PENDING' }">
-                            <i class="fa fa-database" aria-hidden="true"></i>
-                            <span> {{selectedRun.jdbcUrl}}</span><br/>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span> Elapsed time {{elapsedTime}}</span><br/>
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <span > {{launched}} ago</span><br/>
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span  ng-show="selectedRun.user"> {{selectedRun.user}} launched the run</span><br/>
-                        </div>
-
-                        <div class="flatTabs" bs-active-pane="tabs.activeTab" bs-tabs>
-                            <div ng-repeat="tab in tabs" data-title="{{ tab.heading }}" name="{{ tab.heading }}" bs-pane>
-                                <span ng-include="tab.template"></span>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-6">
+                                    <i class="fa fa-database" aria-hidden="true"></i>
+                                    <span> {{selectedRun.jdbcUrl}}</span><br/>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    <span> Elapsed time {{elapsedTime}}</span><br/>
+                                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                    <span > {{launched}} ago</span><br/>
+                                </div>
+                                <div class="col-md-6 col-xs-6">
+                                    <span># {{ selectedRun.uuid | limitTo: 20 }}{{selectedRun.uuid.length > 20 ? '...' : ''}}</span><br/>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span> {{selectedRun.user}}</span><br/>
+                                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                                    <span> {{selectedRun.host}}</span><br/>
+                                    <!--<i class="fa fa-calendar" aria-hidden="true"></i>-->
+                                    <!--<span > {{launched}} ago</span><br/>-->
+                                    <!--<i class="fa fa-cog" aria-hidden="true"></i>-->
+                                    <!--<span> {{selectedRun.uuid}}</span><br/>-->
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="history">
-                        <h4>History</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
 
+                    <div class="flatTabs" bs-active-pane="tabs.activeTab" bs-tabs>
+                        <div ng-repeat="tab in tabs" data-title="{{ tab.heading }}" name="{{ tab.heading }}" bs-pane>
+                            <span ng-include="tab.template"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="history">
+                    <h4>History</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
 
             </div>
+
         </div>
     </div>
+</div>
 
 </div>
 

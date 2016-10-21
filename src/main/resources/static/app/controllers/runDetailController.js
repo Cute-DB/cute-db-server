@@ -7,12 +7,6 @@ angular.module('cuteDB')
 
                 // Get run lints
                 $scope.lints = data ? data : [];
-
-                $scope.criticalLints = {};
-                $scope.highLints = {};
-                $scope.mediumLints = {};
-                $scope.lowLints = {};
-
                 $scope.sortedLints = {};
 
                 for (var i = 0, len = $scope.lints.length; i < len; i++) {
