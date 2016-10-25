@@ -100,6 +100,8 @@
         <joda-time.version>2.9.4</joda-time.version>
         <h2.version>1.4.192</h2.version>
         <commons-collections4.version>4.1</commons-collections4.version>
+        
+        <docker.image.prefix>springio</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -226,6 +228,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>0.4.13</version>
+            <configuration>
+                <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                <dockerDirectory>src/main/docker</dockerDirectory>
+                <resources>
+                    <resource>
+                        <targetPath>/</targetPath>
+                        <directory>${project.build.directory}</directory>
+                        <include>${project.build.finalName}.jar</include>
+                    </resource>
+                </resources>
+            </configuration>
+        </plugin>
         </plugins>
     </build>
 
