@@ -18,9 +18,6 @@ angular.module('cuteDB')
         ];
         $scope.tabs.activeTab = 0;
 
-
-
-
         $http({method:'GET', url:'/runs/uuid/'+$routeParams.uuid})
             .success(function (data) {
                 $scope.selectedRun = data;
@@ -111,25 +108,101 @@ angular.module('cuteDB')
                     }
                 ];
 
+            });
 
-                // $scope.myChartObject = {};
-                // $scope.myChartObject.type = "Gauge";
-                //
-                // $scope.myChartObject.options = {
-                //     width: 200,
-                //     height: 200,
-                //     redFrom: 0,
-                //     redTo: 15,
-                //     yellowFrom: 15,
-                //     yellowTo: 35,
-                //     minorTicks: 5
-                // };
-                //
-                // $scope.myChartObject.data = [
-                //     ['Label', 'Value'],
-                //     ['Health', $scope.selectedRun.weightedScore]
-                // ];
+        $http({method:'GET', url:'/runs/uuid/'+$routeParams.uuid+'/lints'})
+            .success(function (data) {
 
+                // Get run lints
+                var lints = data ? data : [];
+                var sortedLints = {};
+
+                for (var i = 0, len = lints.length; i < len; i++) {
+
+                    if (!sortedLints[lints[i].objectName]) {
+                        var severityCount = {critical: 0, high: 0, medium: 0, low: 0};
+                        sortedLints[lints[i].objectName] = severityCount;
+                    }
+                    if (lints[i].severity == 'critical') {
+                        sortedLints[lints[i].objectName].critical++;
+                    }
+                    if (lints[i].severity == 'high') {
+                        sortedLints[lints[i].objectName].high++;
+                    }
+                    if (lints[i].severity == 'medium') {
+                        sortedLints[lints[i].objectName].medium++;
+                    }
+                    if (lints[i].severity == 'high') {
+                        sortedLints[lints[i].objectName].low++;
+                    }
+                }
+
+                $scope.barChartData = generateData(sortedLints);
+
+                $scope.barChartOptions = {
+                    chart: {
+                        type: 'multiBarChart',
+                        margin: {
+                            top: 20,
+                            right: 20,
+                            bottom: 45,
+                            left: 45
+                        },
+                        x: function(d){return d.label;},
+                        y: function(d){return d.y;},
+                        clipEdge: true,
+                        duration: 500,
+                        xAxes: [{
+                            axisLabel: 'Tables',
+                            stacked: true,
+                            tickFormat: function(d){
+                                return $scope.barChartData[0].values[d].label;
+                            },
+                        }],
+                        yAxes: [{
+                            axisLabel: 'Hits',
+                            axisLabelDistance: -20,
+                            stacked: true,
+                            tickFormat: function(d,i){
+                                return $scope.barChartData[i].values[d].y;
+                            },
+                        }]
+                    }
+                };
+
+                function generateData(dataLints) {
+                    var criticalCounts = [];
+                    var highCounts = [];
+                    var mediumCounts = [];
+                    var lowCounts = [];
+
+                    for (var i = 0, len = Object.keys(dataLints).length; i < len; i++) {
+
+                        criticalCounts.push({x: i, y: Object.values(dataLints)[i].critical, label: Object.keys(dataLints)[i]});
+                        highCounts.push({x: i, y: Object.values(dataLints)[i].high, label: Object.keys(dataLints)[i]});
+                        mediumCounts.push({x: i, y: Object.values(dataLints)[i].medium, label: Object.keys(dataLints)[i]});
+                        lowCounts.push({x: i, y: Object.values(dataLints)[i].low, label: Object.keys(dataLints)[i]});
+
+
+                        // criticalCounts.push({y: Object.values(dataLints)[i].critical, x: Object.keys(dataLints)[i]});
+                        // highCounts.push({y: Object.values(dataLints)[i].high, x: Object.keys(dataLints)[i]});
+                        // mediumCounts.push({y: Object.values(dataLints)[i].medium, x: Object.keys(dataLints)[i]});
+                        // lowCounts.push({y: Object.values(dataLints)[i].low, x: Object.keys(dataLints)[i]});
+
+                        // criticalCounts.push(Object.keys(dataLints)[i], Object.values(dataLints)[i].critical);
+                        // highCounts.push(Object.keys(dataLints)[i], Object.values(dataLints)[i].high);
+                        // mediumCounts.push(Object.keys(dataLints)[i], Object.values(dataLints)[i].medium);
+                        // lowCounts.push(Object.keys(dataLints)[i], Object.values(dataLints)[i].low);
+
+                    }
+
+                    return [
+                        {
+                            "key": "Critical",
+                            "values": criticalCounts
+                        },
+                    ];
+                };
             });
 
         // Get run lints

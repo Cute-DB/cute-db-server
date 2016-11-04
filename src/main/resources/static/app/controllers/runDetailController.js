@@ -17,7 +17,7 @@ angular.module('cuteDB')
 
                     $scope.sortedLints[$scope.lints[i].objectName].push($scope.lints[i]);
 
-                    console.log("sortedLints:"+$scope.sortedLints.size);
+                    // console.log("sortedLints:"+$scope.sortedLints.size);
 
                 }
             });

@@ -1,10 +1,8 @@
-<!--<div google-chart chart="myChartObject"></div>-->
-
 <div class="col-lg-4">
     <div class="panel panel-default donut">
         <div class="panel-heading">Lints repartition</div>
         <!-- /.panel-heading -->
-        <nvd3 options='donutOptions' data='donutData'></nvd3>
+        <nvd3 id="donutChart" options='donutOptions' data='donutData'></nvd3>
     </div>
     <!--<div>-->
         <!--<pvtl-d3-treemap width="850" height="850" data="treemapData" value="population">-->
@@ -14,4 +12,14 @@
         <!--</pvtl-d3-treemap>-->
     <!--</div>-->
     <!-- /.panel-body -->
+</div>
+<div class="col-lg-6 col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Stacked Bar Chart</div>
+        <div class="panel-body">
+            <div class="panel panel-default barChart">
+                <nvd3 id="barChart" options="barChartOptions" data="barChartData"></nvd3>
+            </div>
+        </div>
+    </div>
 </div>

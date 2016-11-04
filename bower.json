@@ -12,6 +12,7 @@
     "angular-strap":"",
     "angular-animate":"",
     "angular-input-stars":"",
-    "d3":""
+    "d3":"",
+    "angular-chart.js":"1.0.3"
   }
 }
