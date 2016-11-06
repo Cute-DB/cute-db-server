@@ -1,9 +1,13 @@
-<div class="col-lg-4">
-    <div class="panel panel-default donut">
-        <div class="panel-heading">Lints repartition</div>
-        <!-- /.panel-heading -->
-        <nvd3 id="donutChart" options='donutOptions' data='donutData'></nvd3>
-    </div>
+<div class="col-lg-6 col-sm-6">
+    <!--<div class="panel panel-default donut">
+        <div class="panel-heading">Lints repartition</div>-->
+        <!--<nvd3 id="donutChart" options='donutOptions' data='donutData'></nvd3>-->
+    <canvas id="doughnut" class="chart chart-doughnut"
+            chart-data="donutData"
+            chart-labels="donutLabels">
+    </canvas>
+
+    <!-- </div> -->
     <!--<div>-->
         <!--<pvtl-d3-treemap width="850" height="850" data="treemapData" value="population">-->
             <!--<div>-->
@@ -13,13 +17,18 @@
     <!--</div>-->
     <!-- /.panel-body -->
 </div>
-<div class="col-lg-6 col-sm-12">
-    <div class="panel panel-default">
+<div class="col-lg-6 col-sm-6">
+    <!--<div class="panel panel-default">
         <div class="panel-heading">Stacked Bar Chart</div>
         <div class="panel-body">
-            <div class="panel panel-default barChart">
-                <nvd3 id="barChart" options="barChartOptions" data="barChartData"></nvd3>
-            </div>
+            <div class="panel panel-default barChart">-->
+    <canvas id="barChart" class="chart chart-bar"
+            chart-data="barChartData"
+            chart-labels="barChartLabels"
+            chart-options="barChartOption"
+            chart-series="barChartSeries"></canvas>
+            <!--</div>
         </div>
-    </div>
+    </div>-->
+
 </div>
