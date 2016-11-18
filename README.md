@@ -33,7 +33,7 @@ Have a proper docker install.
 
 ```
 # Build docker image
-mvn clean package docker:build
+bower install && mvn clean package docker:build
 # List images and find cute-db-server
 docker images
 # Run it !.. and map it local 80 port
