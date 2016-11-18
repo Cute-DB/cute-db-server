@@ -22,3 +22,23 @@ curl http://localhost:9000/runs
 ```bash
 curl -X PUT -H "Content-Type:application/json" -d '{ "jdbcUrl": "jdbc:postgresql://localhost:5432/dbtest", "server": "postgres", "status": "PENDING" }' http://localhost:9000/runs/1
 ```
+
+# Docker
+
+## Prerequisites
+
+Have a proper docker install.
+
+## Build docker image
+
+```
+# Build docker image
+mvn clean package docker:build
+# List images and find cute-db-server
+docker images
+# Run it !.. and map it local 80 port
+docker run -p 127.0.0.1:80:9000 -t cute-db-server
+# Go browse the app
+firefox localhost
+```
+
