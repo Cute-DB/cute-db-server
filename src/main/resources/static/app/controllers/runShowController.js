@@ -69,48 +69,21 @@
                         $scope.launched = $scope.launched + seconds + ' sec';
 
 
-                    // $scope.donutLabels = ["Critical", "High", "Medium", "Low"];
-                    // $scope.donutData = [$scope.selectedRun.criticalHits,$scope.selectedRun.highHits, $scope.selectedRun.mediumHits, $scope.selectedRun.lowHits];
-
-                    /*var colorArray = ['#4572A7', '#71588F', '#DB843D', '#AA4643'];
-                     $scope.colorFunction = function() {
-                     return function(d, i) {
-                     return colorArray[i];
-                     };
-                     }
-
-
-                     $scope.donutOptions = {
-                     chart: {
-                     type: 'pieChart',
-                     height: 450,
-                     donut: true,
-                     x: function(d){return d.key;},
-                     y: function(d){return d.y;},
-                     showLabels: true,
-                     color:$scope.colorFunction(),
-                     }
-                     };
-
-
-                     $scope.donutData = [
-                     {
-                     key: "Low",
-                     y: $scope.selectedRun.lowHits
-                     },
-                     {
-                     key: "Medium",
-                     y: $scope.selectedRun.mediumHits
-                     },
-                     {
-                     key: "High",
-                     y: $scope.selectedRun.highHits
-                     },
-                     {
-                     key: "Critical",
-                     y: $scope.selectedRun.criticalHits
-                     }
-                     ];*/
+                    $scope.donutLabels = ['Critical', 'High', 'Medium', 'Low'];
+                    $scope.donutData = [$scope.selectedRun.criticalHits,$scope.selectedRun.highHits, $scope.selectedRun.mediumHits, $scope.selectedRun.lowHits];
+                    $scope.donutColors = $scope.barChartColors =  [ '#F40707', '#F78181', '#FDB45C', '#7BD66D'];
+                    $scope.donutOptions = {
+                        tooltips: {
+                            callbacks: {
+                                title: function (tooltipItems, data) {
+                                    return tooltipItems[0].xLabel;
+                                },
+                                label: function (tooltipItems, data) {
+                                    return tooltipItems.yLabel;
+                                },
+                            }
+                        },
+                    };
 
                 });
 
@@ -136,13 +109,14 @@
                         if (lints[i].severity == 'medium') {
                             sortedLints[lints[i].objectName].medium++;
                         }
-                        if (lints[i].severity == 'high') {
+                        if (lints[i].severity == 'low') {
                             sortedLints[lints[i].objectName].low++;
                         }
                     }
 
-                    $scope.barChartSeries = ["Critical", "High", "Medium", "Low"];
+                    $scope.barChartSeries = ['Critical', 'High', 'Medium', 'Low'];
                     $scope.barChartOption = {
+                        legend: {display: true},
                         type:'StackedBar',
                         scaleShowLabels : true,
                         scales: {
@@ -154,7 +128,7 @@
                             }]
                         }
                     };
-                    $scope.barChartColors =  [ '#F40707', '#DCDCDC', '#FDB45C', '#7BD66D']
+                    $scope.barChartColors =  [ '#F40707', '#F78181', '#FDB45C', '#7BD66D']
 
                     $scope.barChartLabels = [];
                     var criticalCounts = [];
@@ -163,7 +137,7 @@
                     var lowCounts = [];
                     var count;
 
-                    for (var i = 0, len = 10; i < len; i++) {
+                    for (var i = 0, len = 20; i < len; i++) {
 
                         count = Object.values(sortedLints)[i];
                         $scope.barChartLabels.push(Object.keys(sortedLints)[i]);
