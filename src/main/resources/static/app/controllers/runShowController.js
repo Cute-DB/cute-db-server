@@ -69,8 +69,8 @@
                         $scope.launched = $scope.launched + seconds + ' sec';
 
 
-                    $scope.donutLabels = ["Critical", "High", "Medium", "Low"];
-                    $scope.donutData = [$scope.selectedRun.criticalHits,$scope.selectedRun.highHits, $scope.selectedRun.mediumHits, $scope.selectedRun.lowHits];
+                    // $scope.donutLabels = ["Critical", "High", "Medium", "Low"];
+                    // $scope.donutData = [$scope.selectedRun.criticalHits,$scope.selectedRun.highHits, $scope.selectedRun.mediumHits, $scope.selectedRun.lowHits];
 
                     /*var colorArray = ['#4572A7', '#71588F', '#DB843D', '#AA4643'];
                      $scope.colorFunction = function() {
@@ -141,22 +141,20 @@
                         }
                     }
 
-
-
-
                     $scope.barChartSeries = ["Critical", "High", "Medium", "Low"];
                     $scope.barChartOption = {
                         type:'StackedBar',
+                        scaleShowLabels : true,
                         scales: {
                             xAxes: [{
                                 stacked: true,
                             }],
                             yAxes: [{
-                                stacked: true
+                                stacked: true,
                             }]
                         }
                     };
-
+                    $scope.barChartColors =  [ '#F40707', '#DCDCDC', '#FDB45C', '#7BD66D']
 
                     $scope.barChartLabels = [];
                     var criticalCounts = [];
@@ -165,7 +163,7 @@
                     var lowCounts = [];
                     var count;
 
-                    for (var i = 0, len = Object.keys(sortedLints).length; i < len; i++) {
+                    for (var i = 0, len = 10; i < len; i++) {
 
                         count = Object.values(sortedLints)[i];
                         $scope.barChartLabels.push(Object.keys(sortedLints)[i]);
