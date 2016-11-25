@@ -8,10 +8,10 @@ import java.util.Objects;
 @Entity
 public class Run  {
 
-    private static final int CRITICAL_WEIGHT = 5;
-    private static final int HIGH_WEIGHT = 3;
-    private static final int MEDIUM_WEIGHT = 2;
-    private static final int LOW_WEIGHT = 1;
+    public static final int CRITICAL_WEIGHT = 5;
+    public static final int HIGH_WEIGHT = 3;
+    public static final int MEDIUM_WEIGHT = 2;
+    public static final int LOW_WEIGHT = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
