@@ -96,6 +96,15 @@ public class RunController {
         return finalList;
     }
 
+    @RequestMapping(value ="/uuid/{uuid}/lints/top/{nbTable}", method = RequestMethod.GET)
+    public List<Lint> findBadTables(@PathVariable String uuid, @PathVariable int nbTable){
+        List<io.github.cutedb.model.Lint> lintsList = lintService.getWorstTables(nbTable, uuid);
+        List<Lint> finalList = new ArrayList<>();
+
+        lintsList.forEach(item -> finalList.add(lintService.lintToLintDto(item)));
+        return finalList;
+    }
+
 
 
 

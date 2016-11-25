@@ -24,7 +24,7 @@
                             <th>Start date</th>
                             <th>End date</th>
                             <th>Total lints</th>
-                            <th>Action</th>
+                            <!--<th>Action</th>-->
                         </tr>
                         </thead>
                         <tbody>
@@ -45,11 +45,11 @@
                             <td>{{run.started | date : "medium" : 'dd MM yyyy HH:mm:ss Z'}}</td>
                             <td>{{run.ended | date : "medium" : 'dd MM yyyy HH:mm:ss Z'}}</td>
                             <td>{{run.criticalHits + run.highHits + run.mediumHits + run.lowHits}}</td>
-                            <td><button class="pull-center btn btn-danger" type="button" title="Delete"
+                            <!--<td><button class="pull-center btn btn-danger" type="button" title="Delete"
                                         ng-click="deleteRun(run)">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
-                            </td>
+                            </td>-->
                         </tr>
                         </tbody>
                     </table>

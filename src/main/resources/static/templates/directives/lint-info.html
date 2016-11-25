@@ -3,7 +3,8 @@
         <div class="col-sm-5 col-md-5">
             <i ng-class="value[0].severity === 'critical' ? 'red fa fa-exclamation-circle' :
                     (value[0].severity === 'high' ? 'red fa fa-arrow-circle-up' :
-                    (value[0].severity === 'medium' ? 'orange fa fa-chevron-circle-up' : 'green fa fa-chevron-circle-down'))">
+                    (value[0].severity === 'medium' ? 'orange fa fa-chevron-circle-up' : 'green fa fa-chevron-circle-down'))"
+                    title="{{value[0].severity}}" data-toggle="tooltip">
             </i>
             <span>{{key}}</span>
         </div>
@@ -16,7 +17,8 @@
             <i ng-show="value[$index-1].message != detail.message"
                   ng-class="detail.severity === 'critical' ? 'red fa fa-exclamation-circle' :
                     (detail.severity === 'high' ? 'red fa fa-arrow-circle-up' :
-                    (detail.severity === 'medium' ? 'orange fa fa-chevron-circle-up' : 'green fa fa-chevron-circle-down'))">
+                    (detail.severity === 'medium' ? 'orange fa fa-chevron-circle-up' : 'green fa fa-chevron-circle-down'))"
+                    title="{{detail.severity}}" data-toggle="tooltip">
             </i>
         </div>
         <div class="col-sm-7 col-md-7">
