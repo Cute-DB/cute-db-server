@@ -29,6 +29,7 @@ public class Run {
     private Integer mediumHits = 0;
     private Integer lowHits = 0;
 
+
     public Long getId() {
         return id;
     }
@@ -188,4 +189,5 @@ public class Run {
     public void setDbName(String dbName) {
         this.dbName = dbName;
     }
+
 }

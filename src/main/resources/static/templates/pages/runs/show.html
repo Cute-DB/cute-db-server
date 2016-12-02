@@ -1,22 +1,23 @@
 <div class="runs-wrapper" ng-controller="runShowController">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-xs-12">
             <h1 class="page-header">
-                <button type="button" ng-class="{'btn btn-success' : selectedRun.status == 'SUCCESS',
-                                        'btn btn-danger' : selectedRun.status == 'FAILURE',
-                                        'btn btn-warning' : selectedRun.status == 'RUNNING',
-                                        'btn btn-info' : selectedRun.status == 'PENDING' }">{{selectedRun.status}}</button>
                 {{selectedRun.dbHost}}/{{selectedRun.dbName}}
-                <input-stars max="4" ng-model="selectedRun.score" ng-attr-readonly="true"></input-stars>
-
             </h1>
         </div>
-        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 customBadge">
+            <img src="https://img.shields.io/badge/{{badgeBuild.name}}-{{badgeBuild.value}}-{{badgeBuild.color}}.svg?style=flat"/>
+            <img src="https://img.shields.io/badge/{{badgeScore.name}}-{{badgeScore.value}}-{{badgeScore.color}}.svg?style=flat"/>
+            <img src="https://img.shields.io/badge/{{badgeStars.name}}-{{badgeStars.value}}-{{badgeStars.color}}.svg?style=flat"/>
+        </div>
     </div>
 
     <!-- /.row -->
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-md-10">
 
             <!-- Nav tabs -->
             <div>
