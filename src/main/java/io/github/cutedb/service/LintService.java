@@ -37,6 +37,9 @@ public class LintService {
 
     public Lint addLint(io.github.cutedb.dto.Lint lint) {
         lint.setId(null);
+        if(lint.getMessage() != null && !lint.getMessage().isEmpty() && lint.getMessage().length() > 255){
+            lint.setMessage(lint.getMessage().substring(250) + " ...");
+        }
         return lintRepository.save(lintDtoToLint(lint));
     }
 
@@ -103,6 +106,7 @@ public class LintService {
         scoredTables.sort((ScoredTable o1, ScoredTable o2)->o2.getWeightedScore()-o1.getWeightedScore());
 
         List<String> badTables = new ArrayList<>();
+        nbTables = (nbTables < scoredTables.size() ? nbTables : scoredTables.size());
         scoredTables.subList(0, nbTables).stream().forEach(table -> badTables.add(table.getName()));
 
         List<Lint> finalTopList = new ArrayList<>();

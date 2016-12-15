@@ -23,7 +23,7 @@ angular.module('cuteDB')
                 templateUrl:'/templates/pages/lints/index.html',
                 controller: 'runDetailController'
             })
-
+            .when('/404', {templateUrl : '/templates/404.html'})
 
             .otherwise({redirectTo:'/runs'});
 
