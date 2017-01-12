@@ -7,7 +7,7 @@
     </div>
 
     <!-- /.row -->
-    <div class="row">
+    <div class="row" >
         <div class="col-lg-11">
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -28,7 +28,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="run in runs" ng-click="showInfo(run)">
+                        <tr class="no-data" ng-show="runs.length == 0">
+                            <td colspan="9">No run</td>
+                        </tr>
+                        <tr ng-repeat="run in runs" ng-click="showInfo(run)" class="align-middle">
                             <td>
                                 {{ run.uuid | limitTo: 20 }}{{run.uuid.length > 20 ? '...' : ''}}
                             </td>
@@ -36,7 +39,7 @@
                                 <button type="button" ng-class="{'btn btn-success' : run.status == 'SUCCESS',
                                 'btn btn-danger' : run.status == 'FAILURE',
                                 'btn btn-warning' : run.status == 'RUNNING',
-                                'btn btn-info' : run.status == 'PENDING' }">{{run.status}}</button>
+                                'btn btn-info' : run.status == 'ABORTED' }">{{run.status}}</button>
                             </td>
                             <td>{{run.jdbcUrl}}</td>
                             <td>{{run.host}}</td>

@@ -14,9 +14,17 @@
 }
 
 
-body{
+html,body{
     font-family: 'Aaargh';
+    height: 100%;
 }
+
+
+#page-wrapper {
+    margin: 0 0 0 200px;
+    height: 100%;
+}
+#wrapper{height: 100%;}
 
 
 .my-custom-stars .button .material-icons {
@@ -188,11 +196,13 @@ body{
     width: 200px;
 }
 
-#page-wrapper {
-    margin: 0 0 0 200px;
-}
-
 .customBadge {
     margin-bottom: 20px;
+}
+
+.no-data{
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
 }
 
