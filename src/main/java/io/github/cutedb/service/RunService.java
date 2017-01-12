@@ -9,6 +9,7 @@ import org.apache.commons.collections4.IteratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +34,11 @@ public class RunService {
     public List<Run> findRuns(){
         return IteratorUtils.toList(runRepository.findAll().iterator());
     }
+
+    public List<Run> findByStatus(BuildStatus status){
+        return runRepository.findByStatus(status);
+    }
+
 
     public Run addRun(Run run) {
         run.setId(null);

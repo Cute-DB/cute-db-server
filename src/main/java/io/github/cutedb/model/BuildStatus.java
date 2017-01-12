@@ -10,7 +10,9 @@ public enum BuildStatus {
     RUNNING("Running"),
     PENDING("Pending"),
     FAILURE("Failure"),
-    SUCCESS("Success");
+    SUCCESS("Success"),
+    REMOVED("Removed"),
+    ABORTED("Aborted");
 
 
     private final String descr;

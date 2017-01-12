@@ -98,49 +98,46 @@
                             case 'RUNNING':
                                 $scope.badgeBuild.color = 'orange';
                                 break;
-                            case 'PENDING':
+                            case 'ABORTED':
                                 $scope.badgeBuild.color = 'blue';
                                 break;
                         }
 
                         $scope.badgeScore = {name: 'score', value: $scope.selectedRun.weightedScore};
-                        if ($scope.selectedRun.weightedScore < 25) {
-                            $scope.badgeScore.color = 'red';
-                        } else if ($scope.selectedRun.weightedScore < 50) {
-                            $scope.badgeScore.color = 'orange';
-                        } else if ($scope.selectedRun.weightedScore < 75) {
-                            $scope.badgeScore.color = 'yellow';
-                        } else {
+                        if ($scope.selectedRun.weightedScore <= 1) {
                             $scope.badgeScore.color = 'green';
+                        } else if ($scope.selectedRun.weightedScore  <= 2) {
+                            $scope.badgeScore.color = 'yellow';
+                        } else if ($scope.selectedRun.weightedScore <= 4) {
+                            $scope.badgeScore.color = 'orange';
+                        } else {
+                            $scope.badgeScore.color = 'red';
                         }
 
                         $scope.badgeStars = {name: 'rating'};
                         switch ($scope.selectedRun.score) {
                             case 0:
-                                $scope.badgeStars.value = '☆☆☆☆☆';
+                                $scope.badgeStars.value = '☆☆☆☆';
                                 break;
                             case 1:
-                                $scope.badgeStars.value = '★☆☆☆☆';
+                                $scope.badgeStars.value = '★☆☆☆';
                                 break;
                             case 2:
-                                $scope.badgeStars.value = '★★☆☆☆';
+                                $scope.badgeStars.value = '★★☆☆';
                                 break;
                             case 3:
-                                $scope.badgeStars.value = '★★★☆☆';
+                                $scope.badgeStars.value = '★★★☆';
                                 break;
                             case 4:
-                                $scope.badgeStars.value = '★★★★☆';
-                                break;
-                            case 5:
-                                $scope.badgeStars.value = '★★★★★';
+                                $scope.badgeStars.value = '★★★★';
                                 break;
                         }
 
                         if ($scope.selectedRun.score < 1) {
                             $scope.badgeStars.color = 'red';
-                        } else if ($scope.selectedRun.score <= 2) {
+                        } else if ($scope.selectedRun.score < 2) {
                             $scope.badgeStars.color = 'orange';
-                        } else if ($scope.selectedRun.score <= 4) {
+                        } else if ($scope.selectedRun.score < 4) {
                             $scope.badgeStars.color = 'yellow';
                         } else {
                             $scope.badgeStars.color = 'green';
