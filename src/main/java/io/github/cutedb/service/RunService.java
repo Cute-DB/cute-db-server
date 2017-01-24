@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static io.github.cutedb.model.LintSeverity.*;
@@ -30,9 +31,12 @@ public class RunService {
     @Autowired
     private LintRepository lintRepository;
 
-
     public List<Run> findRuns(){
         return IteratorUtils.toList(runRepository.findAll().iterator());
+    }
+
+    public List<Run> findRunsExceptAborted(){
+      return  IteratorUtils.toList(runRepository.findAll().iterator()).stream().filter(run -> !run.getStatus().equals(BuildStatus.ABORTED)).collect(Collectors.toList());
     }
 
     public List<Run> findByStatus(BuildStatus status){

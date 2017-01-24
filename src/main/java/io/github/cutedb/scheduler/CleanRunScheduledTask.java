@@ -1,5 +1,6 @@
 package io.github.cutedb.scheduler;
 
+import io.github.cutedb.controller.RunController;
 import io.github.cutedb.model.BuildStatus;
 import io.github.cutedb.model.Run;
 import io.github.cutedb.service.RunService;
@@ -31,6 +32,8 @@ public class CleanRunScheduledTask {
 
     @Autowired
     RunService runService;
+    @Autowired
+    RunController runController;
 
     @Scheduled(fixedRate = CHECK_AND_CLEAN_RATE)
     public void checkAndClean() {
@@ -43,7 +46,7 @@ public class CleanRunScheduledTask {
                 DateTime runStartedDate = new DateTime(run.getStarted());
                 if(Minutes.minutesBetween(runStartedDate, now).getMinutes() > MAX_RUNNING_TIME_MINUTES){
                     run.setStatus(BuildStatus.ABORTED);
-                    runService.updateRun(run,run.getId());
+                    runController.updateRun(run,run.getUuid());
                     log.info("Run with uuid : "+run.getUuid()+" has been aborted.");
                 }
             });

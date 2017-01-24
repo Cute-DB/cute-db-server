@@ -5,6 +5,7 @@ import io.github.cutedb.model.Run;
 import io.github.cutedb.service.LintService;
 import io.github.cutedb.service.RunService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -21,7 +22,7 @@ import java.util.UUID;
 @RequestMapping(value = "/runs")
 public class RunController {
 
-    private final List<SseEmitter> sseEmitters = new LinkedList<>();
+    private List<SseEmitter> sseEmitters = new LinkedList<>();
 
     @Autowired
     private RunService runService;
@@ -30,7 +31,7 @@ public class RunController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Run> findItems() {
-        return runService.findRuns();
+        return runService.findRunsExceptAborted();
     }
 
 
@@ -40,26 +41,8 @@ public class RunController {
         run.setUuid(uuid);
         run = runService.addRun(run);
 
-       // synchronized (sseEmitters) {
+        synchronizeWithUi(run);
 
-//            for (SseEmitter emitter : sseEmitters) {
-//                try {
-//                    emitter.send(run, MediaType.APPLICATION_JSON);
-//                } catch (IOException e) {
-//                    emitter.complete();
-//                    sseEmitters.remove(emitter);
-//                }
-//            }
-            
-            /*sseEmitters.forEach((SseEmitter emitter) -> {
-                try {
-                    emitter.send(run, MediaType.APPLICATION_JSON);
-                } catch (IOException e) {
-                    emitter.complete();
-                    sseEmitters.remove(emitter);
-                }
-            });*/
-       // }
         return run;
     }
 
@@ -68,7 +51,9 @@ public class RunController {
         Run run = runService.findbyUuid(uuid);
         run.setStatus(updatedRun.getStatus());
         run.setEnded(updatedRun.getEnded());
-        return runService.runToRunDto(runService.updateRun(run,run.getId()));
+        run = runService.updateRun(run,run.getId());
+        synchronizeWithUi(run);
+        return runService.runToRunDto(run);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -110,7 +95,8 @@ public class RunController {
 
     @RequestMapping (path = "/register", method = RequestMethod.GET)
     public SseEmitter register() throws IOException {
-
+        System.out.println("register");
+        System.out.println("sseEmitters"+sseEmitters);
         SseEmitter emitter = new SseEmitter();
 
         synchronized (sseEmitters) {
@@ -120,6 +106,23 @@ public class RunController {
 
         return emitter;
 
+    }
+
+    private void synchronizeWithUi(Run run){
+        synchronized (sseEmitters) {
+            System.out.println("******************sseEmitters"+sseEmitters);
+            for (SseEmitter emitter : sseEmitters) {
+                try {
+                    emitter.send(run, MediaType.APPLICATION_JSON);
+                    System.out.println("emitter.send(run,MediaType.APPLICATION_JSON");
+                } catch (IOException e) {
+                    emitter.complete();
+                    sseEmitters.remove(emitter);
+                    System.out.println("sseEmitters.remove(emitter);");
+                }
+            }
+
+        }
     }
 
 
