@@ -1,4 +1,4 @@
-<div class="runs-wrapper" ng-controller="runController">
+<div class="runs-wrapper" ng-controller="runController" onload="connect();">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Runs</h1>
@@ -8,59 +8,84 @@
 
     <!-- /.row -->
     <div class="row" >
-        <div class="col-lg-11">
+        <div class="col-md-12">
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Status</th>
-                            <th>Jdbc Url</th>
-                            <th>Host</th>
-                            <th>User</th>
-                            <th>Server</th>
-                            <th>Start date</th>
-                            <th>End date</th>
-                            <th>Total lints</th>
-                            <!--<th>Action</th>-->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="no-data" ng-show="runs.length == 0">
-                            <td colspan="9">No run</td>
-                        </tr>
-                        <tr ng-repeat="run in runs" ng-click="showInfo(run)" class="align-middle">
-                            <td>
-                                {{ run.uuid | limitTo: 20 }}{{run.uuid.length > 20 ? '...' : ''}}
-                            </td>
-                            <td>
-                                <button type="button" ng-class="{'btn btn-success' : run.status == 'SUCCESS',
-                                'btn btn-danger' : run.status == 'FAILURE',
-                                'btn btn-warning' : run.status == 'RUNNING',
-                                'btn btn-info' : run.status == 'ABORTED' }">{{run.status}}</button>
-                            </td>
-                            <td>{{run.jdbcUrl}}</td>
-                            <td>{{run.host}}</td>
-                            <td>{{run.user}}</td>
-                            <td>{{run.server}}</td>
-                            <td>{{run.started | date : "medium" : 'dd MM yyyy HH:mm:ss Z'}}</td>
-                            <td>{{run.ended | date : "medium" : 'dd MM yyyy HH:mm:ss Z'}}</td>
-                            <td>{{run.criticalHits + run.highHits + run.mediumHits + run.lowHits}}</td>
-                            <!--<td><button class="pull-center btn btn-danger" type="button" title="Delete"
-                                        ng-click="deleteRun(run)">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                            </td>-->
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="list-group runList" >
+                    <div class="list-group-item" ng-class="{'rowSuccess' : run.status == 'SUCCESS',
+                                        'rowFailure' : run.status == 'FAILURE',
+                                        'rowRunning' : run.status == 'RUNNING'}" ng-repeat="run in runs">
+                        <div class="row">
+                            <div class="col-md-4 col-xs-4">
+                            <a href ng-class="{'green' : run.status == 'SUCCESS',
+                                        'red' : run.status == 'FAILURE',
+                                        'orange' : run.status == 'RUNNING'}" ng-click="showInfo(run)"># {{ run.uuid | limitTo: 20 }}{{run.uuid.length > 20 ? '...' : ''}} </a><br/>
+                                <i class="fa fa-database" aria-hidden="true"></i>
+                                <span> {{run.jdbcUrl}}</span><br/>
+                            </div>
+                            <div class="col-md-4 col-xs-4">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                <span> Total lints {{run.criticalHits + run.highHits + run.mediumHits + run.lowHits}}</span><br/>
+                                <!--<i class="fa fa-user" aria-hidden="true"></i>-->
+                                <!--<span> {{run.user}}</span><br/>-->
+                                <!--<i class="fa fa-desktop" aria-hidden="true"></i>-->
+                                <!--<span> {{run.host}}</span><br/>-->
+                            </div>
+                            <div class="col-md-4 col-xs-4">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <span> Elapsed time {{getRunElapsedTime(run)}}</span><br/>
+                                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                <span > {{getRunLaunchedTime(run)}} ago</span><br/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.table-responsive -->
+
+                <!--<div class="table-responsive">-->
+                <!--<table class="table table-striped table-bordered table-hover">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                <!--<th>#</th>-->
+                <!--<th>Status</th>-->
+                <!--<th>Jdbc Url</th>-->
+                <!--<th>Host</th>-->
+                <!--<th>User</th>-->
+                <!--<th>Server</th>-->
+                <!--<th>Start date</th>-->
+                <!--<th>End date</th>-->
+                <!--<th>Total lints</th>-->
+                <!--&lt;!&ndash;<th>Action</th>&ndash;&gt;-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--<tr class="no-data" ng-show="runs.length == 0">-->
+                <!--<td colspan="9">No run</td>-->
+                <!--</tr>-->
+                <!--<tr ng-repeat="run in runs" ng-click="showInfo(run)" class="align-middle">-->
+                <!--<td>-->
+                <!--{{ run.uuid | limitTo: 20 }}{{run.uuid.length > 20 ? '...' : ''}}-->
+                <!--</td>-->
+                <!--<td>-->
+                <!--<button type="button" ng-class="{'btn btn-success' : run.status == 'SUCCESS',-->
+                <!--'btn btn-danger' : run.status == 'FAILURE',-->
+                <!--'btn btn-warning' : run.status == 'RUNNING',-->
+                <!--'btn btn-info' : run.status == 'ABORTED' }">{{run.status}}</button>-->
+                <!--</td>-->
+                <!--<td>{{run.jdbcUrl}}</td>-->
+                <!--<td>{{run.host}}</td>-->
+                <!--<td>{{run.user}}</td>-->
+                <!--<td>{{run.server}}</td>-->
+                <!--<td>{{run.started | date : "medium" : 'dd MM yyyy HH:mm:ss Z'}}</td>-->
+                <!--<td>{{run.ended | date : "medium" : 'dd MM yyyy HH:mm:ss Z'}}</td>-->
+                <!--<td>{{run.criticalHits + run.highHits + run.mediumHits + run.lowHits}}</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+                <!--</table>-->
+                <!--</div>-->
+                 <!--/.table-responsive-->
             </div>
             <!-- /.panel-body -->
-            <!--</div>-->
+            </div>
             <!-- /.panel -->
         </div>
     </div>

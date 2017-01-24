@@ -21,7 +21,7 @@ html,body{
 
 
 #page-wrapper {
-    margin: 0 0 0 200px;
+    margin: 50px 0 0 200px;
     height: 100%;
 }
 #wrapper{height: 100%;}
@@ -204,5 +204,57 @@ html,body{
     background-color: white;
     text-align: center;
     vertical-align: middle;
+}
+
+/*.list-group-item {*/
+    /*margin-bottom: 3px;*/
+/*}*/
+
+.runList .list-group-item {
+    margin-bottom: 3px;
+    border: 1px solid #EFF0EC;
+}
+
+.runList .list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.runList .list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.runList .list-group-item .rowSuccess >  a:focus, a:hover{
+    text-decoration: underline;
+    color: #87BB43;
+    font-weight: bold;
+
+}
+
+.runList .list-group-item .rowFailure >  a:focus, a:hover{
+    text-decoration: underline;
+    color: #EC3E40;
+    font-weight: bold;
+
+}
+
+.runList .list-group-item .rowRunning >  a:focus, a:hover{
+    text-decoration: underline;
+    color: #FF9B2B;
+    font-weight: bold;
+
+}
+
+.rowSuccess {
+    background: linear-gradient(to right, #87BB43 0, #87BB43 10px, #fff 10px, #fff 100%) no-repeat;
+}
+
+.rowFailure {
+    background: linear-gradient(to right, #EC3E40 0, #EC3E40 10px, #fff 10px, #fff 100%) no-repeat;
+}
+
+.rowRunning {
+    background: linear-gradient(to right, #FF9B2B 0, #FF9B2B 10px, #fff 10px, #fff 100%) no-repeat;
 }
 
