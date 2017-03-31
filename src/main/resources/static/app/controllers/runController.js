@@ -17,6 +17,8 @@
                     for(var i=0;i< $scope.runs.length;i++){
                         if($scope.runs[i].uuid === run.uuid){
                             if(run.status === 'ABORTED'){
+                               // console.log("logs---->");
+                                //$("#runs").children().splice(i,1);
                                 delete $scope.runs[i];
                             }
                             else {
@@ -27,7 +29,7 @@
                         }
                     }
                     // }
-                    console.log("run: " + run.uuid);
+                    //console.log("run: " + run.uuid);
                     if(!found) {
                         $scope.runs.unshift(run);
                     }

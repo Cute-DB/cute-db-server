@@ -110,15 +110,12 @@ public class RunController {
 
     private void synchronizeWithUi(Run run){
         synchronized (sseEmitters) {
-            System.out.println("******************sseEmitters"+sseEmitters);
             for (SseEmitter emitter : sseEmitters) {
                 try {
                     emitter.send(run, MediaType.APPLICATION_JSON);
-                    System.out.println("emitter.send(run,MediaType.APPLICATION_JSON");
                 } catch (IOException e) {
                     emitter.complete();
                     sseEmitters.remove(emitter);
-                    System.out.println("sseEmitters.remove(emitter);");
                 }
             }
 

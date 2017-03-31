@@ -210,36 +210,36 @@ html,body{
     /*margin-bottom: 3px;*/
 /*}*/
 
-.runList .list-group-item {
+.runList > .list-group-item {
     margin-bottom: 3px;
     border: 1px solid #EFF0EC;
 }
 
-.runList .list-group-item:last-child {
+.runList > .list-group-item:last-child {
     margin-bottom: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
-.runList .list-group-item:first-child {
+.runList > .list-group-item:first-child {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
-.runList .list-group-item .rowSuccess >  a:focus, a:hover{
+.runList > .list-group-item .rowSuccess >  a:focus, a:hover{
     text-decoration: underline;
     color: #87BB43;
     font-weight: bold;
 
 }
 
-.runList .list-group-item .rowFailure >  a:focus, a:hover{
+.runList > .list-group-item .rowFailure >  a:focus, a:hover{
     text-decoration: underline;
     color: #EC3E40;
     font-weight: bold;
 
 }
 
-.runList .list-group-item .rowRunning >  a:focus, a:hover{
+.runList > .list-group-item .rowRunning >  a:focus, a:hover{
     text-decoration: underline;
     color: #FF9B2B;
     font-weight: bold;
