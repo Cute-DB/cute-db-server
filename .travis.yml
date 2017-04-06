@@ -10,8 +10,8 @@ env:
   - secure: ChQ6LYEfOrPffhXQDWW+Styg9hbXA6Xoe/qLz1z+YtjrOnPh5d0fUJFsbKEsaTwsf3BeYeD6UsDXKyoVrr2uzCCEOKbvSygOURw7OG4psDdOCTgNxxdhbOBLEwWt2LOWxpQtSTeuayWFfmvn2jOfTON1ugT04Zk7+2ojo9Z95t8M8A8i8HZqMDBBvKueFqGf+AK88l1WKa6ULZLyWDDLarrnVck4HkSfYhLkU9rYFdexTSTZ3eH4TfFAACxvojy2TjG6d9F21hwkeH0yugYIcpI5VCQT0zMQsrMVT1z7HyLOj3ExxLHiSPbG9hNNAFu8s0mdGDKN4nuRXLI0y3yBvaUWWgb148p6anNryQ3GxNRmBZecUGi/cmVjSTLtsqpo1A//U3jECld3sAhBbQuds8olcDZU4XeD4NMymJjVw3D5LqYGfLBjQUdsR0114lpj9f1eKHqb1olWw6H4U/zuUK+a1CODJqY3w44iCjKzQb/0imJ7msYBzz07884X4pu51ht7seC6F3J88UZun8OEExFtOE227Jbs4e9aA01V1C4quj9S6stv6ArvuUCGTCXva5dMUfix47YEmz3ubSzOLSYWqYZ8GJqSvCxGcnOnIhpC5GaICfd57FuK/Q8vhiYsJzjUOx5OJs5KEbGsRiSdFdfLSlwO0TbPwH2xJ8oHGKs=
 install: mvn clean install checksum:files -DskipTests=true -Dmaven.javadoc.skip=true
   -B -V
-script:
-- mvn versioneye:update test jacoco:report
+before_script: mvn versioneye:update
+script: mvn test jacoco:report
 before_deploy:
 - export RELEASE_PKG_FILE=$(ls target/*.jar)
 - export RELEASE_PKG_MD5_FILE=$(ls target/*.jar.md5)
