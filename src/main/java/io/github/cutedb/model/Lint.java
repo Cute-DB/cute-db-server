@@ -23,7 +23,7 @@ public class Lint implements Serializable{
     String objectName;
     @Column
     LintSeverity severity;
-    @Column
+    @Column(columnDefinition = "TEXT")
     String message;
     @Column
     @Length(max = 1000)

@@ -22,8 +22,8 @@ import java.util.List;
 @Component
 public class CleanRunScheduledTask {
 
-    public static final int MAX_RUNNING_TIME_MINUTES = 2;
-    private static final int CHECK_AND_CLEAN_RATE = 600000;
+    public static final int MAX_RUNNING_TIME_MINUTES = 1;
+    private static final int CHECK_AND_CLEAN_RATE = 6000;
 
 
     private static final Logger log = LoggerFactory.getLogger(CleanRunScheduledTask.class);
