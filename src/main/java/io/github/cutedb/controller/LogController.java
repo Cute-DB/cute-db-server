@@ -15,7 +15,7 @@ public class LogController {
     @Autowired
     CuteDbLogService cuteDbLogService;
 
-    @RequestMapping(value="/", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public void addLog(@RequestBody CuteDbLog log) {
         cuteDbLogService.addLog(log);
     }

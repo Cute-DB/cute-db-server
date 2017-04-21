@@ -14,7 +14,7 @@ public class CuteDbLog {
     String uuid;
     @Column
     Long timestamp;
-    @Column
+    @Column(columnDefinition = "TEXT")
     String message;
     @Column
     String level;
